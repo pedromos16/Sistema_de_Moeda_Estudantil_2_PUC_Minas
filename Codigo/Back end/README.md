@@ -80,7 +80,7 @@ A porta do app está configurada como 3001, portanto irá ser hospedado em "http
 ___
 ## 5. Endpoints da aplicação
 
-Endereço local base: localhost:3001/api/
+Endereço local base: http://localhost:3001/api/
 ### 5.1 Alunos
 
 - ###### Cadastrar Aluno
