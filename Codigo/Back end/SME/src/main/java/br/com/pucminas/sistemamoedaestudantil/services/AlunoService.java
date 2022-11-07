@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.InvalidTransactionException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -27,12 +28,33 @@ public class AlunoService {
         return listResponse.stream().map(AlunoResponseDTO::new).collect(Collectors.toList());
     }
 
+    public void subtrairMoedas(double valor, Integer id) throws Exception {
+        Aluno aluno = getById(id);
+        if(aluno.getSaldo() - valor > 0){
+            aluno.setSaldo(aluno.getSaldo() - valor);
+            repository.save(aluno);
+        }else
+            throw new InvalidTransactionException("Não foi possivel realizar a transacao, verifique a quantidade transferida");
+    }
+
+    @Transactional
+    public void adicionarMoedas(double valor, Integer id) throws Exception {
+        Aluno aluno = getById(id);
+        aluno.setSaldo(aluno.getSaldo() + valor);
+        repository.save(aluno);
+    }
+
+    @Transactional
+    public boolean validarSaldo(double current, double subtraction){
+        if(current - subtraction < 0) return false;
+            return true;
+    }
     @Transactional
     public Aluno getById(Integer id) throws Exception {
         try{
-        Optional<Aluno> obj = repository.findById(id);
-        return obj.orElseThrow(()-> new ObjectNotFoundException(1,
-                "Aluno não encontrado.\n Id: " + id));
+            Optional<Aluno> obj = repository.findById(id);
+            return obj.orElseThrow(()-> new ObjectNotFoundException(1,
+                    "Aluno não encontrado.\n Id: " + id));
         }catch(Exception e){
             throw new Exception("Aluno não encontrado");
         }
