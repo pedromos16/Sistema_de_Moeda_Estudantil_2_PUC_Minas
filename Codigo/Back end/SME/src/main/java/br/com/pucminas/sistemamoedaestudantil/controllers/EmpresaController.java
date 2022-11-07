@@ -1,7 +1,9 @@
 package br.com.pucminas.sistemamoedaestudantil.controllers;
 
 import br.com.pucminas.sistemamoedaestudantil.dtos.request.AlunoRequestDTO;
+import br.com.pucminas.sistemamoedaestudantil.dtos.request.EmpresaRequestDTO;
 import br.com.pucminas.sistemamoedaestudantil.dtos.response.AlunoResponseDTO;
+import br.com.pucminas.sistemamoedaestudantil.dtos.response.EmpresaResponseDTO;
 import br.com.pucminas.sistemamoedaestudantil.entities.Empresa;
 import br.com.pucminas.sistemamoedaestudantil.services.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class EmpresaController {
 
     @GetMapping(value = "/listar")
     public ResponseEntity listar(){
-        List<Empresa> list = service.findAll();
+        List<EmpresaResponseDTO> list = service.findAll();
         if (list.isEmpty())
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Nenhum colaborador encontrado.");
         return ResponseEntity.ok().body(list);
@@ -34,7 +36,7 @@ public class EmpresaController {
     }
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity insert (@RequestBody Empresa dto) {
+    public ResponseEntity insert (@RequestBody EmpresaRequestDTO dto) {
         ResponseEntity resp = service.insert(dto);
         return resp;
     }

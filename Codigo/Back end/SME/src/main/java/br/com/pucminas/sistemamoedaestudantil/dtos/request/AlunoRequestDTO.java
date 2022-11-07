@@ -14,7 +14,6 @@ public class AlunoRequestDTO {
     String email;
     String senha;
     String rg;
-
     String cpf;
     String endereco;
     Double saldo;
