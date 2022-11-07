@@ -1,8 +1,6 @@
 package br.com.pucminas.sistemamoedaestudantil.controllers;
 
-import br.com.pucminas.sistemamoedaestudantil.dtos.request.AlunoRequestDTO;
 import br.com.pucminas.sistemamoedaestudantil.dtos.request.EmpresaRequestDTO;
-import br.com.pucminas.sistemamoedaestudantil.dtos.response.AlunoResponseDTO;
 import br.com.pucminas.sistemamoedaestudantil.dtos.response.EmpresaResponseDTO;
 import br.com.pucminas.sistemamoedaestudantil.entities.Empresa;
 import br.com.pucminas.sistemamoedaestudantil.services.EmpresaService;
