@@ -58,5 +58,56 @@ exemplo de corpo:{
 
 "saldo": 139082812
 
+
+## Professor "/api/professor"
+
+### Get by Id
+
+requisição: /api/professor/mostrar/id/{id}
+
+### Get all
+
+requisição: /api/professor/listar
+
+### Insert
+
+requisição: /api/professor/cadastrar
+
+exemplo de corpo:{
+
+    "nome": "José",
+
+    "email":"jose@gmail.com",
+
+    "senha": "12332",
+
+    "cpf": "32897137812",
+
+    "moedas": 200.0
+
+}
+
+### Delete by id
+
+requisição /api/professor/deletar/id/{id}
+
+### Update by id
+
+requisição /api/professor/update/id/{id}
+
+exemplo de corpo:{
+
+    "nome": "José Alberto",
+
+    "email":"jose_alberto@gmail.com",
+
+    "senha": "987456",
+
+    "cpf": "32897137812",
+
+    "moedas": 150.0
+
+}
+
 }
 }
