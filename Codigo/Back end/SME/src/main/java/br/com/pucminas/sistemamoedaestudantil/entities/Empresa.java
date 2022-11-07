@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Empresa implements Serializable {
+public class Empresa extends Usuario implements Serializable {
     private static final long SerialVersionUID = 3298741341L;
 
     @Id
