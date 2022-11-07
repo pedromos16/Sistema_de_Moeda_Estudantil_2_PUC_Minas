@@ -1,17 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a00dcef3-a045-4113-afa3-7d26a9d3c0d5" name="Changes" comment="" />
+    <list default="true" id="a00dcef3-a045-4113-afa3-7d26a9d3c0d5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/controllers/VantagemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/entities/Compra.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/entities/Vantagem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/repositories/VantagemRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/services/VantagemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/controllers/EmpresaController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/controllers/VantagemController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/entities/Compra.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/entities/Usuario.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/entities/Vantagem.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/repositories/VantagemRepository.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Codigo/Back end/SME/src/main/java/br/com/pucminas/sistemamoedaestudantil/services/VantagemService.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2HCJ54MgK6m6vtQrEI48tsNDIvu" />
   <component name="ProjectViewState">
@@ -23,10 +55,22 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/pedro_qrzg7o4/OneDrive - sga.pucminas.br/4 - Quarto semestre/0 - Código/PUC-4/LabProjetos/Sistema_de_Moeda_Estudantil_2_PUC_Minas",
-    "nodejs_package_manager_path": "npm"
+    "last_opened_file_path": "C:/MT/PUC/4 Periodo/Repositorios/Sistema_de_Moeda_Estudantil_2_PUC_Minas/Codigo/Back end/SME",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\MT\PUC\4 Periodo\Repositorios\Sistema_de_Moeda_Estudantil_2_PUC_Minas\Codigo\Back end\SME\src\main\java\br\com\pucminas\sistemamoedaestudantil\controllers" />
+      <recent name="C:\MT\PUC\4 Periodo\Repositorios\Sistema_de_Moeda_Estudantil_2_PUC_Minas\Codigo\Back end\SME\src\main\java\br\com\pucminas\sistemamoedaestudantil\entities" />
+      <recent name="C:\MT\PUC\4 Periodo\Repositorios\Sistema_de_Moeda_Estudantil_2_PUC_Minas\Codigo\Back end\SME\src\main\java\br\com\pucminas\sistemamoedaestudantil\repositories" />
+      <recent name="C:\MT\PUC\4 Periodo\Repositorios\Sistema_de_Moeda_Estudantil_2_PUC_Minas\Codigo\Back end\SME\src\main\java\br\com\pucminas\sistemamoedaestudantil\services" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
