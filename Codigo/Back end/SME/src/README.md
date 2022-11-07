@@ -1,4 +1,4 @@
-# mapeamento do CRUD de entidades
+# Mapeamento do CRUD de entidades
 
 ## Aluno "/api/aluno"
 
@@ -58,6 +58,7 @@ exemplo de corpo:{
 
 "saldo": 139082812
 
+___________________________________________
 
 ## Professor "/api/professor"
 
@@ -106,6 +107,83 @@ exemplo de corpo:{
     "cpf": "32897137812",
 
     "moedas": 150.0
+
+}
+
+___________________________________________
+
+## Instituicao "/api/instituicao"
+
+### Get by Id
+
+requisição: /api/instituicao/mostrar/id/{id}
+
+### Get all
+
+requisição: /api/instituicao/listar
+
+### Insert
+
+requisição: /api/instituicao/cadastrar
+
+exemplo de corpo:{
+
+    "nome": "Faculdade Estrela",
+
+    "cnpj": "32895379812"
+
+}
+
+### Delete by id
+
+requisição /api/instituicao/deletar/id/{id}
+
+### Update by id
+
+requisição /api/instituicao/update/id/{id}
+
+exemplo de corpo:{
+
+     "nome": "Faculdade Estrela do Norte",
+
+    "cnpj": "32895379812"
+
+}
+
+___________________________________________
+
+## Curso "/api/curso"
+
+### Get by Id
+
+requisição: /api/curso/mostrar/id/{id}
+
+### Get all
+
+requisição: /api/curso/listar
+
+### Insert
+
+requisição: /api/curso/cadastrar
+
+exemplo de corpo:{
+
+    "nome": "Agronomia"
+
+}
+
+### Delete by id
+
+requisição /api/curso/deletar/id/{id}
+
+### Update by id
+
+requisição /api/curso/update/id/{id}
+
+exemplo de corpo:{
+
+     "nome": "Engenharia de grãos"
+
 
 }
 
