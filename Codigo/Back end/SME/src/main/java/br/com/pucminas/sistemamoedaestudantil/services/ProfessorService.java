@@ -4,6 +4,7 @@ package br.com.pucminas.sistemamoedaestudantil.services;
 import br.com.pucminas.sistemamoedaestudantil.dtos.request.ProfessorRequestDTO;
 import br.com.pucminas.sistemamoedaestudantil.dtos.response.ProfessorResponseDTO;
 
+import br.com.pucminas.sistemamoedaestudantil.entities.Aluno;
 import br.com.pucminas.sistemamoedaestudantil.entities.Professor;
 
 import br.com.pucminas.sistemamoedaestudantil.repositories.ProfessorRepository;
@@ -13,6 +14,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.InvalidTransactionException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +40,21 @@ public class ProfessorService {
         }catch(Exception e){
             throw new Exception("Professor não encontrado");
         }
+    }
+
+    public void subtrairMoedas(double valor, Integer id) throws Exception {
+        Professor professor = getById(id);
+        if(professor.getMoedas() - valor > 0){
+            professor.setMoedas(professor.getMoedas() - valor);
+            repository.save(professor);
+        }else
+            throw new InvalidTransactionException("Não foi possivel realizar a transacao, verifique a quantidade transferida");
+    }
+
+    public void adicionarMoedas(double valor, Integer id) throws Exception {
+        Professor professor = getById(id);
+        professor.setMoedas(professor.getMoedas() + valor);
+        repository.save(professor);
     }
 
     @Transactional

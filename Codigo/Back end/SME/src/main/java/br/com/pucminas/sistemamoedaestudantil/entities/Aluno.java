@@ -1,13 +1,13 @@
 package br.com.pucminas.sistemamoedaestudantil.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,4 +20,9 @@ public class Aluno extends Usuario implements Serializable {
     String cpf;
     String endereco;
     Double saldo;
+
+    @OneToMany
+    @JoinColumn(name = "aluno_id")
+    @JsonIgnore
+    private Set<Transacao> transacoes;
 }

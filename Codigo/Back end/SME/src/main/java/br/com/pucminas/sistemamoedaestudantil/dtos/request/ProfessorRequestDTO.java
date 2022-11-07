@@ -14,7 +14,6 @@ public class ProfessorRequestDTO {
     String nome;
     String email;
     String senha;
-
     String cpf;
     Double moedas;
 

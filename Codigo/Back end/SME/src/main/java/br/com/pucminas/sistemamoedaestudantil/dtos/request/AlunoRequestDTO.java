@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AlunoRequestDTO {
 
-    String nome;
-    String email;
-    String senha;
-    String rg;
-    String cpf;
-    String endereco;
-    Double saldo;
+    private String nome;
+    private String email;
+    private String senha;
+    private String rg;
+    private String cpf;
+    private String endereco;
+    private Double saldo;
 
     public AlunoRequestDTO(Aluno aluno){
         this.email = aluno.getEmail();
