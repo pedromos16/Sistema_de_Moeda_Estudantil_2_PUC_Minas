@@ -24,7 +24,7 @@ public class AlunoService {
     @Transactional
     public List<AlunoResponseDTO> findAll(){
         List<Aluno> listResponse = repository.findAll();
-        return listResponse.stream().map(obj -> new AlunoResponseDTO(obj)).collect(Collectors.toList());
+        return listResponse.stream().map(AlunoResponseDTO::new).collect(Collectors.toList());
     }
 
     @Transactional
@@ -54,6 +54,7 @@ public class AlunoService {
         }
     }
 
+    @Transactional
     public Aluno update(Integer id, Aluno obj) throws Exception {
        Aluno newAluno = getById(id);
        newAluno.setCpf(obj.getCpf());

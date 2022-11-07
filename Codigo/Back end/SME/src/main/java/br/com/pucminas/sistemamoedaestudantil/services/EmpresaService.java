@@ -1,5 +1,8 @@
 package br.com.pucminas.sistemamoedaestudantil.services;
 
+import br.com.pucminas.sistemamoedaestudantil.dtos.request.EmpresaRequestDTO;
+import br.com.pucminas.sistemamoedaestudantil.dtos.response.EmpresaResponseDTO;
+import br.com.pucminas.sistemamoedaestudantil.entities.Aluno;
 import br.com.pucminas.sistemamoedaestudantil.entities.Empresa;
 import br.com.pucminas.sistemamoedaestudantil.repositories.EmpresaRepository;
 import org.hibernate.ObjectNotFoundException;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EmpresaService {
@@ -19,22 +23,23 @@ public class EmpresaService {
     private EmpresaRepository repository;
 
     @Transactional
-    public List<Empresa> findAll(){
+    public List<EmpresaResponseDTO> findAll(){
         List<Empresa> listResponse = repository.findAll();
-        return listResponse;
+        return listResponse.stream().map(EmpresaResponseDTO::new).collect(Collectors.toList());
     }
 
     @Transactional
     public Empresa getById(Integer id){
         Optional<Empresa> obj = repository.findById(id);
         return obj.orElseThrow(()-> new ObjectNotFoundException(1,
-                "Aluno não encontrado.\n Id: " + id));
+                "Empresa não encontrada.\n Id: " + id));
+
     }
 
     @Transactional
-    public ResponseEntity<Empresa> insert(Empresa obj){
-        Empresa resp = repository.save(obj);
-        return ResponseEntity.ok().body(resp);
+    public ResponseEntity<EmpresaRequestDTO> insert(EmpresaRequestDTO objDTO){
+        Empresa obj = repository.save(objDTO.build());
+        return ResponseEntity.ok().body(new EmpresaRequestDTO(obj));
     }
 
     @Transactional
@@ -47,10 +52,14 @@ public class EmpresaService {
         }
     }
 
+    @Transactional
     public Empresa update(Integer id, Empresa obj) {
         Empresa newEmpresa = getById(id);
         newEmpresa.setCnpj(obj.getCnpj());
         newEmpresa.setSaldo(obj.getSaldo());
+        newEmpresa.setNome(obj.getNome());
+        newEmpresa.setEmail(obj.getEmail());
+        newEmpresa.setSenha(obj.getSenha());
         return repository.save(newEmpresa);
     }
     
