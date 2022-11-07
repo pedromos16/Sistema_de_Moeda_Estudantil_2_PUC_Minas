@@ -80,4 +80,213 @@ A porta do app está configurada como 3001, portanto irá ser hospedado em "http
 ___
 ## 5. Endpoints da aplicação
 
-- ainda em construção.
+Endereço local base: localhost:3001/api/
+### 5.1 Alunos
+
+- ###### Cadastrar Aluno
+
+Endpoint: /aluno/cadastrar
+
+Exemplo de Json:
+>{
+> 	"nome": "Pedro",
+>   "email":"pedro@gmail.com",
+>   "senha": "12332",
+>   "rg": "31278378192312",
+>   "cpf": "32897137812",
+>   "endereco": "sla 123",
+>   "saldo": 59.0
+>}
+
+
+- ###### Mostrar aluno por Id
+
+Endpoint: /aluno/mostrar/id/{id}
+
+Exemplo de Json de retorno:
+
+>{
+>   "id": 1,
+>   "nome": "Pedro",
+>   "email": "pedro@gmail.com",
+>   "rg": "31278378192312",
+>   "endereco": "sla 123",
+>   "saldo": 59.0,
+>   "cpf": "32897137812"
+>}
+ 
+- ###### Listar todos os alunos cadastrados
+
+Endpoint: /aluno/listar
+
+Exemplo de Json de retorno:
+
+>[
+>   {
+>       "id": 1,
+>       "nome": "Pedro",
+>       "email": "pedro@gmail.com",
+>       "rg": "31278378192312",
+>       "endereco": "sla 123",
+>       "saldo": 61.0,
+>       "cpf": "32897137812"
+>   }
+>]
+
+
+
+- ###### Deletar Aluno por Id
+
+Endpoint: /aluno/deletar/id/{id}
+
+(ta meio bugado ainda)
+___
+
+### 5.2 Professores
+
+- ###### Cadastrar Professor
+
+Endpoint: /professor/cadastrar
+
+Exemplo de Json:
+
+>{
+>   "nome":"Marco",
+>   "email": "marco@gmail.com",
+>   "moedas": 59.0,
+>   "cpf": "36123612-31",
+>   "senha":"123
+>}
+
+- ###### Mostrar Professor por Id
+
+Endpoint: /professor/mostrar/id/{id}
+
+Exemplo de Json de retorno:
+
+>{
+>   "id": 1,
+>   "nome": "Marco",
+>   "email": "marco@gmail.com",
+>   "moedas": 59.0,
+>   "cpf": "36123612-31"
+>}
+
+
+- ###### Listar todos os Professores cadastrados
+
+Endpoint: /professor/listar
+
+Exemplo de Json de retorno:
+
+>[
+>   {
+>       "id": 1,
+>       "nome": "Marco",
+>       "email": "marco@gmail.com",
+>       "moedas": 4.0,
+>       "cpf": "36123612-31"
+>   }
+>]
+
+- ###### Deletar Professor por Id
+
+Endpoint: /empresa/deletar/id/{id}
+
+___
+
+### 5.3 Empresas
+
+- ###### Cadastrar Empresas
+
+    Endpoint: /empresa/cadastrar
+<br>
+<br>
+    Exemplo de Json:
+>{
+>   "cnpj": "38213879",
+>   "saldo": 139082812
+>}
+
+- ###### Mostrar Empresa por Id
+
+Endpoint: /empresa/mostrar/id/{id}
+
+Exemplo de Json de retorno:
+
+>{
+>   "cnpj": "38213879",
+>   "saldo": 139082812
+>}
+
+- ###### Listar todas as empresas cadastradas
+
+Endpoint: /empresa/listar
+
+Exemplo de Json de retorno:
+
+>[
+>   {
+>       "cnpj": "38213879",
+>       "saldo": 139082812
+>   }
+> ]
+
+- ###### Deletar empresa por Id
+
+Endpoint: /empresa/deletar/id/{id}
+
+___
+
+### 5.4 Transacoes
+
+- ###### Realizar uma transação de um professor para um aluno
+
+Endpoint: /transacao/cadastrar/byprofessor
+
+Exemplo de Json:
+>{
+>   "alunoId": 1,
+>   "professorId": "1",
+>   "valor": 30
+> }
+
+- ###### Buscar todas as transações referente ao aluno
+
+Endpoint: /transacao/listar/aluno?id={id}
+
+Exemplo de Json de retorno:
+
+>[
+>   {
+>       "id": 1,
+>       "idAluno": 1,
+>       "nomeAluno": "Pedro",
+>       "idProfessor": 1,
+>       "nomeProfessor": "Marco",
+>       "valor": 5.0,
+>       "de": "Professor",
+>       "para": "Aluno"
+>   }
+>]
+
+- ###### Buscar todas as transações referente ao professor
+
+Endpoint: /transacao/listar/professor?id={id}
+
+Exemplo de Json de retorno:
+
+>[
+>   {
+>       "id": 1,
+>       "idAluno": 1,
+>       "nomeAluno": "Pedro",
+>       "idProfessor": 1,
+>       "nomeProfessor": "Marco",
+>       "valor": 5.0,
+>       "de": "Professor",
+>       "para": "Aluno"
+>   }
+>]
+
+___
