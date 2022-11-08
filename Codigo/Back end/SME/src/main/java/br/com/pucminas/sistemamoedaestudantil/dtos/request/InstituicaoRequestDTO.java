@@ -10,14 +10,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InstituicaoRequestDTO {
-    String nome;
+    private String nome;
 
-    String cnpj;
+    private Integer id;
+    private String cnpj;
 
 
     public InstituicaoRequestDTO(Instituicao instituicao){
         this.nome = instituicao.getNome();
         this.cnpj = instituicao.getCnpj();
+        this.id = instituicao.getId();
     }
 
     public Instituicao build(){
