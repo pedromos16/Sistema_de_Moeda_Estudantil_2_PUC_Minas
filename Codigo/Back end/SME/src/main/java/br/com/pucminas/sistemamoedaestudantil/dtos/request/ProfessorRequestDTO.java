@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class ProfessorRequestDTO {
-    String nome;
-    String email;
-    String senha;
-    String cpf;
-    Double moedas;
+    private String nome;
+
+    private Integer id;
+    private String email;
+    private String senha;
+    private String cpf;
+    private Double moedas;
 
     public ProfessorRequestDTO(Professor professor){
         this.email = professor.getEmail();
@@ -23,6 +25,7 @@ public class ProfessorRequestDTO {
         this.senha = professor.getSenha();
         this.moedas = professor.getMoedas();
         this.cpf = professor.getCpf();
+        this.id = professor.getId();
     }
 
     public Professor build(){

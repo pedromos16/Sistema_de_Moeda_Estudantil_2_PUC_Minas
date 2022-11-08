@@ -4,6 +4,7 @@ import br.com.pucminas.sistemamoedaestudantil.entities.Empresa;
 
 public class EmpresaRequestDTO {
 
+    private Integer id;
     private String nome;
     private String email;
     private String senha;
@@ -16,6 +17,7 @@ public class EmpresaRequestDTO {
         this.senha = obj.getSenha();
         this.cnpj = obj.getCnpj();
         this.saldo = obj.getSaldo();
+        this.id = obj.getId();
     }
 
     public Empresa build(){

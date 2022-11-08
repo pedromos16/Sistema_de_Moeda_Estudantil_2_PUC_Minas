@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AlunoRequestDTO {
 
+    private Integer id;
     private String nome;
     private String email;
     private String senha;
@@ -26,6 +27,7 @@ public class AlunoRequestDTO {
         this.senha = aluno.getSenha();
         this.saldo = aluno.getSaldo();
         this.cpf = aluno.getCpf();
+        this.id = aluno.getId();
     }
 
     public Aluno build(){

@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CursoRequestDTO {
-    String nome;
+    private String nome;
+    private Integer id;
 
 
     public CursoRequestDTO(Curso curso){
 
         this.nome = curso.getNome();
-
     }
 
     public Curso build(){

@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TransacaoRequestDTO {
 
-    Integer alunoId;
-
-    Integer professorId;
-
-    double valor;
+    private Integer id;
+    private Integer alunoId;
+    private Integer professorId;
+    private double valor;
 
     public TransacaoRequestDTO(Transacao obj){
         this.alunoId = obj.getAluno().getId();
         this.professorId = obj.getProfessor().getId();
         this.valor = obj.getValor();
+        this.id = obj.getId();
     }
 }
