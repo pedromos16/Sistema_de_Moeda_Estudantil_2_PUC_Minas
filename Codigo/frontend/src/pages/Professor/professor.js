@@ -2,33 +2,35 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/service";
 
-function Aluno() {
-  const [aluno, setAluno] = useState({});
+function Professor() {
+  const [professor, setProfessor] = useState({});
 
   const { id } = useParams();
 
   function handleClick(event) {
     event.preventDefault();
     api
-      .delete(`/aluno/deletar/id/${id}`)
+      .delete(`/professor/deletar/id/${id}`)
       .then(() => (window.location.href = `/`));
   }
 
   useEffect(() => {
-    api.get(`/aluno/mostrar/id/${id}`).then((res) => setAluno(res.data));
+    api
+      .get(`/professor/mostrar/id/${id}`)
+      .then((res) => setProfessor(res.data));
   }, [id]);
 
   return (
     <>
       <div style={{ textAligment: "center" }}>
-        <h1>Aluno</h1>
-        <p>{aluno.nome}</p>
-        <p>{aluno.email}</p>
+        <h1>Professor</h1>
+        <p>{professor.nome}</p>
+        <p>{professor.email}</p>
         <button onClick={(e) => handleClick(e)}> Deletar </button>
-        <a href={`/editar/aluno/${id}`}>Editar Aluno</a>
+        <a href={`/editar/professor/${id}`}>Editar Professor</a>
       </div>
     </>
   );
 }
 
-export default Aluno;
+export default Professor;

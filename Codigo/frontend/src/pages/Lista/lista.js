@@ -4,10 +4,12 @@ import api from "../../services/service";
 function Lista() {
   const [alunos, setAlunos] = useState([{}]);
   const [empresas, setEmpresas] = useState([{}]);
+  const [professores, setProfessores] = useState([{}]);
 
   useEffect(() => {
     api.get("/aluno/listar").then((res) => setAlunos(res.data));
     api.get("/empresa/listar").then((res) => setEmpresas(res.data));
+    api.get("/professor/listar").then((res) => setProfessores(res.data));
   }, []);
 
   return (
@@ -15,25 +17,100 @@ function Lista() {
       <div style={{ textAligment: "center" }}>
         <h1>Alunos</h1>
         <div>
-          {alunos.length > 0
-            ? alunos.map((aluno) => (
-                <>
-                  <a href={`/aluno/:${aluno.id}`}>{aluno.nome}</a>
-                  <div>{JSON.stringify(aluno)}</div>
-                </>
-              ))
-            : "Nao existem alunos cadastrados"}
-        </div>
+          {alunos.length > 0 ? (
+            <>
+              <table>
+                <caption>Alunos cadastrados no sistema</caption>
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {alunos.map((aluno) => (
+                    <>
+                      <tr>
+                        <th scope="row">
+                          {" "}
+                          <a href={`/aluno/${aluno.id}`}>{aluno.nome}</a>
+                        </th>
+                        <td>{aluno.email}</td>
+                      </tr>
+                    </>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          ) : (
+            "Nao existem alunos cadastrados"
+          )}
+        </div>{" "}
         <h1>Empresas</h1>
         <div>
-          {empresas.length > 0
-            ? empresas.map((empresa) => (
-                <>
-                  <a href={`/empresa/:${empresa.id}`}>{empresa.cnpj}</a>
-                  <div>{JSON.stringify(empresa)}</div>
-                </>
-              ))
-            : "Nao existem empresas cadastrados"}
+          <div>
+            {empresas.length > 0 ? (
+              <>
+                <table>
+                  <caption>Empresas cadastradas no sistema</caption>
+                  <thead>
+                    <tr>
+                      <th>CNPJ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {empresas.map((empresa) => (
+                      <>
+                        <tr>
+                          <th scope="row">
+                            {" "}
+                            <a href={`/empresa/${empresa.id}`}>
+                              {empresa.cnpj}
+                            </a>
+                          </th>
+                        </tr>
+                      </>
+                    ))}
+                  </tbody>
+                </table>
+              </>
+            ) : (
+              "Nao existem empresas cadastradas"
+            )}
+          </div>{" "}
+        </div>{" "}
+        <h1>Professores</h1>
+        <div>
+          {professores.length > 0 ? (
+            <>
+              <table>
+                <caption>Professores cadastrados no sistema</caption>
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th scope="col">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {professores.map((professor) => (
+                    <>
+                      <tr>
+                        <th scope="row">
+                          {" "}
+                          <a href={`/professor/${professor.id}`}>
+                            {professor.nome}
+                          </a>
+                        </th>
+                        <td>{professor.email}</td>
+                      </tr>
+                    </>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          ) : (
+            "Nao existem professores cadastrados"
+          )}
         </div>{" "}
       </div>
     </>

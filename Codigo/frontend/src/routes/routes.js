@@ -4,8 +4,10 @@ import CadastrarAluno from "../pages/CadastrarAluno/cadastrarAluno";
 import CadastrarEmpresa from "../pages/CadastrarEmpresa/cadastrarEmpresa";
 import EditarAluno from "../pages/EditarAluno/editarAluno";
 import EditarEmpresa from "../pages/EditarEmpresa/editarEmpresa";
+import EditarProfessor from "../pages/EditarProfessor/editarProfessor";
 import Empresa from "../pages/Empresa/empresa";
 import Lista from "../pages/Lista/lista";
+import Professor from "../pages/Professor/professor";
 
 const Rotas = () => (
   <BrowserRouter>
@@ -17,6 +19,13 @@ const Rotas = () => (
     </Routes>
     <Routes>
       <Route path="/empresa/:id" caseSensitive={false} element={<Empresa />} />
+    </Routes>
+    <Routes>
+      <Route
+        path="/professor/:id"
+        caseSensitive={false}
+        element={<Professor />}
+      />
     </Routes>
     <Routes>
       <Route
@@ -44,6 +53,13 @@ const Rotas = () => (
         path="/editar/empresa/:id"
         caseSensitive={false}
         element={<EditarEmpresa />}
+      />
+    </Routes>
+    <Routes>
+      <Route
+        path="/editar/professor/:id"
+        caseSensitive={false}
+        element={<EditarProfessor />}
       />
     </Routes>
   </BrowserRouter>
