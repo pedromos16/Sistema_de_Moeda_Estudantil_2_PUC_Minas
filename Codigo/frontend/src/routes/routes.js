@@ -8,6 +8,7 @@ import EditarProfessor from "../pages/EditarProfessor/editarProfessor";
 import Empresa from "../pages/Empresa/empresa";
 import Lista from "../pages/Lista/lista";
 import Professor from "../pages/Professor/professor";
+import Transacao from "../pages/Transacao/transacao";
 
 const Rotas = () => (
   <BrowserRouter>
@@ -61,6 +62,9 @@ const Rotas = () => (
         caseSensitive={false}
         element={<EditarProfessor />}
       />
+    </Routes>
+    <Routes>
+      <Route path="/transacao" caseSensitive={false} element={<Transacao />} />
     </Routes>
   </BrowserRouter>
 );
