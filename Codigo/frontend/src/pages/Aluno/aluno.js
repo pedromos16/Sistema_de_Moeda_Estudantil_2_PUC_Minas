@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import api from "../../api/service";
+import api from "../../services/service";
 
 function Aluno() {
   const [aluno, setAluno] = useState({});

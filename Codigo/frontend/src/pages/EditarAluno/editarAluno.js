@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import api from "../../api/service";
+import api from "../../services/service";
 
 export default function EditarAluno() {
   const [formData, setFormData] = React.useState({

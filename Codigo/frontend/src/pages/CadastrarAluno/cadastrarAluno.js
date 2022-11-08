@@ -1,5 +1,5 @@
 import React from "react";
-import api from "../../api/service";
+import api from "../../services/service";
 
 export default function CadastrarAluno() {
   const [formData, setFormData] = React.useState({
@@ -24,9 +24,10 @@ export default function CadastrarAluno() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    api
-      .post("/aluno/cadastrar", formData)
-      .then((res) => (window.location.href = `/aluno/${res.data.id}`));
+    api.post("/aluno/cadastrar", formData).then((res) => {
+      console.log(res.data);
+      // window.location.href = `/aluno/${res.data.id}`;
+    });
     console.log(formData);
   }
 

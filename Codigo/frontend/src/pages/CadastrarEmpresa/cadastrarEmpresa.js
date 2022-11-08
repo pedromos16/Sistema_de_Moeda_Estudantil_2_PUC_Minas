@@ -1,5 +1,5 @@
 import React from "react";
-import api from "../../api/service";
+import api from "../../services/service";
 
 export default function CadastrarEmpresa() {
   const [formData, setFormData] = React.useState({

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../../api/service";
+import api from "../../services/service";
 
 function Lista() {
   const [alunos, setAlunos] = useState([{}]);
