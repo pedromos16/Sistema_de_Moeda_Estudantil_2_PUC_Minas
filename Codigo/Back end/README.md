@@ -249,6 +249,7 @@ Exemplo de Json:
 >   "alunoId": 1,
 >   "professorId": "1",
 >   "valor": 30
+>   "descricao:" "Bom rendimento!"
 > }
 
 - ###### Buscar todas as transações referente ao aluno
@@ -266,7 +267,8 @@ Exemplo de Json de retorno:
 >       "nomeProfessor": "Marco",
 >       "valor": 5.0,
 >       "de": "Professor",
->       "para": "Aluno"
+>       "para": "Aluno",
+>       "descricao": "Bom rendimento!"
 >   }
 >]
 
@@ -285,7 +287,8 @@ Exemplo de Json de retorno:
 >       "nomeProfessor": "Marco",
 >       "valor": 5.0,
 >       "de": "Professor",
->       "para": "Aluno"
+>       "para": "Aluno",
+>       "descricao": "Bom rendimento!"
 >   }
 >]
 
