@@ -14,6 +14,8 @@ public class EmpresaResponseDTO {
     private String senha;
     private String cnpj;
     private double saldo;
+    private Integer roleID;
+
 
     public EmpresaResponseDTO(Empresa obj){
         this.nome = obj.getNome();
@@ -21,5 +23,6 @@ public class EmpresaResponseDTO {
         this.senha = obj.getSenha();
         this.cnpj = obj.getCnpj();
         this.saldo = obj.getSaldo();
+        this.roleID = 3;
     }
 }

@@ -7,6 +7,7 @@ import br.com.pucminas.sistemamoedaestudantil.dtos.response.ProfessorResponseDTO
 import br.com.pucminas.sistemamoedaestudantil.entities.Aluno;
 import br.com.pucminas.sistemamoedaestudantil.entities.Empresa;
 import br.com.pucminas.sistemamoedaestudantil.entities.Professor;
+import br.com.pucminas.sistemamoedaestudantil.entities.Usuario;
 import br.com.pucminas.sistemamoedaestudantil.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,37 +24,48 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-
-    @PostMapping(value = "/aluno")
-    public ResponseEntity<?> loginAlunoRequest(@RequestBody LoginRequestDTO dto){
-        Aluno aluno;
+    @PostMapping
+    public ResponseEntity<?> loginRequest(@RequestBody LoginRequestDTO dto){
+        Usuario user;
         try{
-            aluno = loginService.validateAlunoLogin(dto.getEmail(), dto.getSenha());
+            user = loginService.validarLogin(dto.getEmail(), dto.getSenha());
         }catch(IllegalArgumentException e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok().body(new AlunoResponseDTO(aluno));
+        return ResponseEntity.ok().body(user);
     }
 
-    @PostMapping(value = "/professor")
-    public ResponseEntity<?> loginProfessorRequest(@RequestBody LoginRequestDTO dto){
-        Professor obj;
-        try{
-            obj = loginService.validateProfessorLogin(dto.getEmail(), dto.getSenha());
-        }catch(IllegalArgumentException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        return ResponseEntity.ok().body(new ProfessorResponseDTO(obj));
-    }
 
-    @PostMapping(value = "/empresa")
-    public ResponseEntity<?> loginEmpresaRequest(@RequestBody LoginRequestDTO dto){
-        Empresa obj;
-        try{
-            obj = loginService.validateEmpresaLogin(dto.getEmail(), dto.getSenha());
-        }catch(IllegalArgumentException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        return ResponseEntity.ok().body(new EmpresaResponseDTO(obj));
-    }
+//    @PostMapping(value = "/aluno")
+//    public ResponseEntity<?> loginAlunoRequest(@RequestBody LoginRequestDTO dto){
+//        Aluno aluno;
+//        try{
+//            aluno = loginService.validateAlunoLogin(dto.getEmail(), dto.getSenha());
+//        }catch(IllegalArgumentException e){
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//        return ResponseEntity.ok().body(new AlunoResponseDTO(aluno));
+//    }
+//
+//    @PostMapping(value = "/professor")
+//    public ResponseEntity<?> loginProfessorRequest(@RequestBody LoginRequestDTO dto){
+//        Professor obj;
+//        try{
+//            obj = loginService.validateProfessorLogin(dto.getEmail(), dto.getSenha());
+//        }catch(IllegalArgumentException e){
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//        return ResponseEntity.ok().body(new ProfessorResponseDTO(obj));
+//    }
+//
+//    @PostMapping(value = "/empresa")
+//    public ResponseEntity<?> loginEmpresaRequest(@RequestBody LoginRequestDTO dto){
+//        Empresa obj;
+//        try{
+//            obj = loginService.validateEmpresaLogin(dto.getEmail(), dto.getSenha());
+//        }catch(IllegalArgumentException e){
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//        return ResponseEntity.ok().body(new EmpresaResponseDTO(obj));
+//    }
 }

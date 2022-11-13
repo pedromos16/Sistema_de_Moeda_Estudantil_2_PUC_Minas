@@ -16,7 +16,7 @@ public class AlunoResponseDTO {
     private String rg;
     private String endereco;
     private Double saldo;
-
+    private Integer roleID;
     private String cpf;
 
     public AlunoResponseDTO(Aluno aluno){
@@ -27,5 +27,6 @@ public class AlunoResponseDTO {
         this.rg = aluno.getRg();
         this.saldo = aluno.getSaldo();
         this.cpf = aluno.getCpf();
+        this.roleID = 1;
     }
 }

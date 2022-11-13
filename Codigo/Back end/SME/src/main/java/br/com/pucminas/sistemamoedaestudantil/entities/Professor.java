@@ -22,6 +22,8 @@ public class Professor extends Usuario implements Serializable {
     private String cpf;
     private Double moedas;
 
+    private final Integer roleID = 2;
+
     @OneToMany
     @JoinColumn(name = "professor_id")
     @JsonIgnore
