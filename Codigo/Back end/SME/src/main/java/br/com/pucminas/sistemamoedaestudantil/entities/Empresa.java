@@ -17,9 +17,6 @@ import java.io.Serializable;
 public class Empresa extends Usuario implements Serializable {
     private static final long SerialVersionUID = 3298741341L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
     String cnpj;
     Double saldo;
 }

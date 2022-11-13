@@ -80,7 +80,29 @@ A porta do app está configurada como 3001, portanto irá ser hospedado em "http
 ___
 ## 5. Endpoints da aplicação
 
+
 Endereço local base: http://localhost:3001/api/
+
+### 5.0 Login
+[POST]
+
+- Endpoint Aluno: /login/aluno
+
+- Endpoint professor: /login/professor
+
+- Endpoint Empresa: /login/empresa
+
+Exemplo de json:
+>{
+>   "email": "marco@gmail.com",
+>   "senha": "123"
+>}
+
+O retorno se da com o mesmo corpo dos métodos de mostrar, dependendo da entidade requisitada.
+
+___
+
+
 ### 5.1 Alunos
 
 - ###### Cadastrar Aluno
@@ -204,6 +226,8 @@ ___
 <br>
     Exemplo de Json:
 >{
+>   "nome":"Marco ltda",
+>   "email": "marcoltda@gmail.com",
 >   "cnpj": "38213879",
 >   "saldo": 139082812
 >}
@@ -215,6 +239,9 @@ Endpoint: /empresa/mostrar/id/{id}
 Exemplo de Json de retorno:
 
 >{
+>   "id": 1,
+>   "nome":"Marco",
+>   "email": "marco@gmail.com",
 >   "cnpj": "38213879",
 >   "saldo": 139082812
 >}
@@ -227,9 +254,12 @@ Exemplo de Json de retorno:
 
 >[
 >   {
+>       "id": 1,
+>       "nome":"Marco",
+>       "email": "marco@gmail.com",
 >       "cnpj": "38213879",
 >       "saldo": 139082812
->   }
+>   },
 > ]
 
 - ###### Deletar empresa por Id

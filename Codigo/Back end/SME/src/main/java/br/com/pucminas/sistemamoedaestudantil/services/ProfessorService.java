@@ -1,10 +1,10 @@
 package br.com.pucminas.sistemamoedaestudantil.services;
 
 
+import br.com.pucminas.sistemamoedaestudantil.Exception.EmailJaCadastradoException;
 import br.com.pucminas.sistemamoedaestudantil.dtos.request.ProfessorRequestDTO;
 import br.com.pucminas.sistemamoedaestudantil.dtos.response.ProfessorResponseDTO;
 
-import br.com.pucminas.sistemamoedaestudantil.entities.Aluno;
 import br.com.pucminas.sistemamoedaestudantil.entities.Professor;
 
 import br.com.pucminas.sistemamoedaestudantil.repositories.ProfessorRepository;
@@ -57,8 +57,15 @@ public class ProfessorService {
         repository.save(professor);
     }
 
+    public Professor findByEmail(String email){
+        return repository.findByEmail(email);
+    }
+
     @Transactional
-    public ResponseEntity<ProfessorRequestDTO> insert(ProfessorRequestDTO objDTO){
+    public ResponseEntity<?> insert(ProfessorRequestDTO objDTO){
+        Professor professor = repository.findByEmail(objDTO.getEmail());
+        if(professor != null) return ResponseEntity.badRequest().body(new EmailJaCadastradoException("Email já cadastrado", objDTO.getEmail()));
+
         Professor obj = repository.save(objDTO.build());
         return ResponseEntity.ok().body(new ProfessorRequestDTO(obj));
     }
