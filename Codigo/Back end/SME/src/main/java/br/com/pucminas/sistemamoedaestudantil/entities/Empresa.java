@@ -17,6 +17,8 @@ import java.io.Serializable;
 public class Empresa extends Usuario implements Serializable {
     private static final long SerialVersionUID = 3298741341L;
 
-    String cnpj;
-    Double saldo;
+    private String cnpj;
+    private Double saldo;
+
+    private final Integer roleID = 3;
 }

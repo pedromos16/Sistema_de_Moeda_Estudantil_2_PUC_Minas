@@ -81,16 +81,12 @@ ___
 ## 5. Endpoints da aplicação
 
 
-Endereço local base: http://localhost:3001/api/
+Endereço local base: http://localhost:3001/api
 
 ### 5.0 Login
 [POST]
 
-- Endpoint Aluno: /login/aluno
-
-- Endpoint professor: /login/professor
-
-- Endpoint Empresa: /login/empresa
+- Endpoint: /login
 
 Exemplo de json:
 >{
@@ -117,7 +113,8 @@ Exemplo de Json:
 >   "rg": "31278378192312",
 >   "cpf": "32897137812",
 >   "endereco": "sla 123",
->   "saldo": 59.0
+>   "saldo": 59.0,
+>   "roleID": 1
 >}
 
 
@@ -134,7 +131,8 @@ Exemplo de Json de retorno:
 >   "rg": "31278378192312",
 >   "endereco": "sla 123",
 >   "saldo": 59.0,
->   "cpf": "32897137812"
+>   "cpf": "32897137812",
+>   "roleID": 1
 >}
  
 - ###### Listar todos os alunos cadastrados
@@ -151,7 +149,8 @@ Exemplo de Json de retorno:
 >       "rg": "31278378192312",
 >       "endereco": "sla 123",
 >       "saldo": 61.0,
->       "cpf": "32897137812"
+>       "cpf": "32897137812",
+>       "roleID": 1
 >   }
 >]
 
@@ -177,7 +176,8 @@ Exemplo de Json:
 >   "email": "marco@gmail.com",
 >   "moedas": 59.0,
 >   "cpf": "36123612-31",
->   "senha":"123
+>   "senha":"123,
+>   "roleID": 2
 >}
 
 - ###### Mostrar Professor por Id
@@ -191,7 +191,8 @@ Exemplo de Json de retorno:
 >   "nome": "Marco",
 >   "email": "marco@gmail.com",
 >   "moedas": 59.0,
->   "cpf": "36123612-31"
+>   "cpf": "36123612-31",
+>   "roleID": 2
 >}
 
 
@@ -207,7 +208,8 @@ Exemplo de Json de retorno:
 >       "nome": "Marco",
 >       "email": "marco@gmail.com",
 >       "moedas": 4.0,
->       "cpf": "36123612-31"
+>       "cpf": "36123612-31",
+>       "roleID": 2
 >   }
 >]
 
@@ -243,7 +245,8 @@ Exemplo de Json de retorno:
 >   "nome":"Marco",
 >   "email": "marco@gmail.com",
 >   "cnpj": "38213879",
->   "saldo": 139082812
+>   "saldo": 139082812,
+>   "roleID": 3
 >}
 
 - ###### Listar todas as empresas cadastradas
@@ -258,7 +261,8 @@ Exemplo de Json de retorno:
 >       "nome":"Marco",
 >       "email": "marco@gmail.com",
 >       "cnpj": "38213879",
->       "saldo": 139082812
+>       "saldo": 139082812,
+>       "roleID": 3
 >   },
 > ]
 
