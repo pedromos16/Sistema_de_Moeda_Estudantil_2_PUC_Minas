@@ -18,6 +18,8 @@ public class TransacaoResponseDTO {
     private String de;
     private String para;
 
+    private String descricao;
+
 //    private double saldoAtual;
 
     public TransacaoResponseDTO(Transacao transacao){
@@ -29,5 +31,6 @@ public class TransacaoResponseDTO {
         this.valor = transacao.getValor();
         this.de = transacao.getDe();
         this.para = transacao.getPara();
+        this.descricao = transacao.getDescricao();
     }
 }

@@ -32,4 +32,6 @@ public class Transacao implements Serializable {
     private String para;
 
     private double saldoAtual;
+
+    private String descricao;
 }
