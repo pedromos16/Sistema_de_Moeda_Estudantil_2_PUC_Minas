@@ -17,6 +17,7 @@ public class CursoRequestDTO {
     public CursoRequestDTO(Curso curso){
 
         this.nome = curso.getNome();
+        this.id = curso.getId();
     }
 
     public Curso build(){

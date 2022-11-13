@@ -18,6 +18,8 @@ public class Curso implements Serializable {
     private static final long SerialVersionUID = 321637213L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String nome;
 
 }

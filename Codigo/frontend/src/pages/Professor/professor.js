@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/service";
 
-function Aluno() {
-  const [aluno, setAluno] = useState({});
+function Professor() {
+  const [professor, setProfessor] = useState({});
   const [transacoes, setTransacoes] = useState({});
 
   const { id } = useParams();
@@ -11,25 +11,28 @@ function Aluno() {
   function handleClick(event) {
     event.preventDefault();
     api
-      .delete(`/aluno/deletar/id/${id}`)
+      .delete(`/professor/deletar/id/${id}`)
       .then(() => (window.location.href = `/`));
   }
 
   useEffect(() => {
-    api.get(`/aluno/mostrar/id/${id}`).then((res) => setAluno(res.data));
+    api
+      .get(`/professor/mostrar/id/${id}`)
+      .then((res) => setProfessor(res.data));
 
     api
-      .get(`/transacao/listar/aluno?id={${id}}`)
+      .get(`/transacao/listar/professor?id={${id}}`)
       .then((res) => setTransacoes(res.data));
   }, [id]);
 
   return (
     <>
       <div style={{ textAligment: "center" }}>
-        <h1>Aluno</h1>
-        <p>{aluno.nome}</p>
-        <p>{aluno.email}</p>
-        <h2>Extrato</h2>
+        <h1>Professor</h1>
+        <p>{professor.nome}</p>
+        <p>{professor.email}</p>
+        <p>{professor.moedas}</p>
+        <h2>Transacoes</h2>
         <div>
           {transacoes.length > 0 ? (
             <>
@@ -37,7 +40,7 @@ function Aluno() {
                 <caption>Transacoes realizadas</caption>
                 <thead>
                   <tr>
-                    <th>Professor</th>
+                    <th>Aluno</th>
                     <th scope="col">Quantidada de moedas</th>
                   </tr>
                 </thead>
@@ -47,8 +50,8 @@ function Aluno() {
                       <tr>
                         <th scope="row">
                           {" "}
-                          <a href={`/professor/${transacao.idProfessor}`}>
-                            {transacao.nomeProfessor}
+                          <a href={`/aluno/${transacao.idAluno}`}>
+                            {transacao.nomeAluno}
                           </a>
                         </th>
                         <td>{transacao.valor}</td>
@@ -64,10 +67,10 @@ function Aluno() {
         </div>{" "}
         <br></br>
         <button onClick={(e) => handleClick(e)}> Deletar </button>
-        <a href={`/editar/aluno/${id}`}>Editar Aluno</a>
+        <a href={`/editar/professor/${id}`}>Editar Professor</a>
       </div>
     </>
   );
 }
 
-export default Aluno;
+export default Professor;

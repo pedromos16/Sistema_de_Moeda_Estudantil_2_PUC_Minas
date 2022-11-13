@@ -10,7 +10,7 @@ function Empresa() {
   function handleClick(event) {
     event.preventDefault();
     api
-      .delete(`/aluno/deletar/id/${id}`)
+      .delete(`/professor/deletar/id/${id}`)
       .then(() => (window.location.href = `/`));
   }
 

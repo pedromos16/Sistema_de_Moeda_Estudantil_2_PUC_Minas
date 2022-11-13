@@ -11,10 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CursoResponseDTO {
 
+    private Integer id;
     private String nome;
 
     public CursoResponseDTO(Curso curso){
         this.nome = curso.getNome();
-
+        this.id = curso.getId();
     }
 }
