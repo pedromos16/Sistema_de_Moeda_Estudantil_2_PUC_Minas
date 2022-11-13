@@ -1,5 +1,6 @@
 package br.com.pucminas.sistemamoedaestudantil.services;
 
+import br.com.pucminas.sistemamoedaestudantil.Exception.EmailJaCadastradoException;
 import br.com.pucminas.sistemamoedaestudantil.dtos.request.EmpresaRequestDTO;
 import br.com.pucminas.sistemamoedaestudantil.dtos.response.EmpresaResponseDTO;
 import br.com.pucminas.sistemamoedaestudantil.entities.Aluno;
@@ -37,9 +38,15 @@ public class EmpresaService {
     }
 
     @Transactional
-    public ResponseEntity<EmpresaRequestDTO> insert(EmpresaRequestDTO objDTO){
+    public ResponseEntity<?> insert(EmpresaRequestDTO objDTO){
+        Empresa empresa = repository.findByEmail(objDTO.getEmail());
+        if(empresa != null) return ResponseEntity.badRequest().body(new EmailJaCadastradoException("Email já cadastrado", objDTO.getEmail()));
         Empresa obj = repository.save(objDTO.build());
         return ResponseEntity.ok().body(new EmpresaRequestDTO(obj));
+    }
+
+    public Empresa findByEmail(String email){
+        return repository.findByEmail(email);
     }
 
     @Transactional

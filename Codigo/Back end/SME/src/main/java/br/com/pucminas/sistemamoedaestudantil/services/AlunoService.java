@@ -1,12 +1,15 @@
 package br.com.pucminas.sistemamoedaestudantil.services;
 
+import br.com.pucminas.sistemamoedaestudantil.Exception.EmailJaCadastradoException;
 import br.com.pucminas.sistemamoedaestudantil.dtos.request.AlunoRequestDTO;
 import br.com.pucminas.sistemamoedaestudantil.dtos.response.AlunoResponseDTO;
 import br.com.pucminas.sistemamoedaestudantil.entities.Aluno;
-import br.com.pucminas.sistemamoedaestudantil.repositories.AlunoReposiory;
+import br.com.pucminas.sistemamoedaestudantil.entities.Professor;
+import br.com.pucminas.sistemamoedaestudantil.repositories.AlunoRepository;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +23,7 @@ import java.util.stream.Collectors;
 public class AlunoService {
 
     @Autowired
-    private AlunoReposiory repository;
+    private AlunoRepository repository;
 
     @Transactional
     public List<AlunoResponseDTO> findAll(){
@@ -49,6 +52,11 @@ public class AlunoService {
         if(current - subtraction < 0) return false;
             return true;
     }
+
+    public Aluno findByEmail(String email){
+        return repository.findByEmail(email);
+    }
+
     @Transactional
     public Aluno getById(Integer id) throws Exception {
         try{
@@ -61,7 +69,9 @@ public class AlunoService {
     }
 
     @Transactional
-    public ResponseEntity<AlunoRequestDTO> insert(AlunoRequestDTO objDTO){
+    public ResponseEntity<?> insert(AlunoRequestDTO objDTO){
+        Aluno aluno = repository.findByEmail(objDTO.getEmail());
+        if(aluno != null) return ResponseEntity.badRequest().body(new EmailJaCadastradoException("Email já cadastrado", objDTO.getEmail()));
         Aluno obj = repository.save(objDTO.build());
         return ResponseEntity.ok().body(new AlunoRequestDTO(obj));
     }
