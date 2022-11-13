@@ -15,11 +15,13 @@ public class TransacaoRequestDTO {
     private Integer alunoId;
     private Integer professorId;
     private double valor;
+    private String descricao;
 
     public TransacaoRequestDTO(Transacao obj){
         this.alunoId = obj.getAluno().getId();
         this.professorId = obj.getProfessor().getId();
         this.valor = obj.getValor();
         this.id = obj.getId();
+        this.descricao = obj.getDescricao();
     }
 }
