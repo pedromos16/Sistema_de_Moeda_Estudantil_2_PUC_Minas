@@ -16,10 +16,11 @@ import java.util.Set;
 public class Aluno extends Usuario implements Serializable {
     private static final long SerialVersionUID = 329877213L;
 
-    String rg;
-    String cpf;
-    String endereco;
-    Double saldo;
+    private String rg;
+    private String cpf;
+    private String endereco;
+    private Double saldo;
+    private final Integer roleID = 1;
 
     @OneToMany
     @JoinColumn(name = "aluno_id")

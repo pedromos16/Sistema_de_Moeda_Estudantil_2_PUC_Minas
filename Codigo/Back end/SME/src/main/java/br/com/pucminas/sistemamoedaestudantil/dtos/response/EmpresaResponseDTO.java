@@ -19,6 +19,8 @@ public class EmpresaResponseDTO {
     private String cnpj;
     private double saldo;
     private List<Vantagem> vantagens;
+    private Integer roleID;
+
 
     public EmpresaResponseDTO(Empresa obj){
         this.nome = obj.getNome();
@@ -27,5 +29,6 @@ public class EmpresaResponseDTO {
         this.cnpj = obj.getCnpj();
         this.saldo = obj.getSaldo();
         this.vantagens = obj.getVantagems();
+        this.roleID = 3;
     }
 }

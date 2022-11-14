@@ -13,10 +13,9 @@ public class ProfessorResponseDTO {
     private Integer id;
     private String nome;
     private String email;
-
     private Double moedas;
-
     private String cpf;
+    private Integer roleID;
 
     public ProfessorResponseDTO(Professor professor){
         this.id = professor.getId();
@@ -24,5 +23,6 @@ public class ProfessorResponseDTO {
         this.nome = professor.getNome();
         this.moedas = professor.getMoedas();
         this.cpf = professor.getCpf();
+        this.roleID = 2;
     }
 }

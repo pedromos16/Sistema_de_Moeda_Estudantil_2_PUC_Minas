@@ -24,10 +24,10 @@ public class Empresa extends Usuario implements Serializable {
     @OneToMany(mappedBy = "empresa")
     @JsonIgnoreProperties("empresa")
     private List<Vantagem> vantagems = new ArrayList<>();
+    private final Integer roleID = 3;
 
     public void addVantagem(Vantagem obj)
     {
         vantagems.add(obj);
     }
-
 }
