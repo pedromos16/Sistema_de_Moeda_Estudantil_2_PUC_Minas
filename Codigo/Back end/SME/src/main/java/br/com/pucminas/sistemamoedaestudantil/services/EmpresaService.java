@@ -5,6 +5,7 @@ import br.com.pucminas.sistemamoedaestudantil.dtos.request.EmpresaRequestDTO;
 import br.com.pucminas.sistemamoedaestudantil.dtos.response.EmpresaResponseDTO;
 import br.com.pucminas.sistemamoedaestudantil.entities.Aluno;
 import br.com.pucminas.sistemamoedaestudantil.entities.Empresa;
+import br.com.pucminas.sistemamoedaestudantil.entities.Vantagem;
 import br.com.pucminas.sistemamoedaestudantil.repositories.EmpresaRepository;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,14 +1,16 @@
 package br.com.pucminas.sistemamoedaestudantil.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,8 +19,15 @@ import java.io.Serializable;
 public class Empresa extends Usuario implements Serializable {
     private static final long SerialVersionUID = 3298741341L;
 
-    private String cnpj;
-    private Double saldo;
-
+    String cnpj;
+    Double saldo;
+    @OneToMany(mappedBy = "empresa")
+    @JsonIgnoreProperties("empresa")
+    private List<Vantagem> vantagems = new ArrayList<>();
     private final Integer roleID = 3;
+
+    public void addVantagem(Vantagem obj)
+    {
+        vantagems.add(obj);
+    }
 }
