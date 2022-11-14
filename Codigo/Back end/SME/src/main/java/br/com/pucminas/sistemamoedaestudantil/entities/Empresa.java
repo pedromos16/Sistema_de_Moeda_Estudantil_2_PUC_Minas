@@ -4,11 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,4 +18,13 @@ public class Empresa extends Usuario implements Serializable {
 
     String cnpj;
     Double saldo;
+    @OneToMany
+    @JoinColumn(name = "empresa")
+    private Set<Vantagem> vantagems = new HashSet<>();
+
+    public void addVantagem(Vantagem obj)
+    {
+        vantagems.add(obj);
+    }
+
 }
