@@ -20,7 +20,7 @@ public class EmpresaRequestDTO {
     private String senha;
     private String cnpj;
     private double saldo;
-    private Set<Vantagem> vantagem;
+    private List<Vantagem> vantagem;
 
     public EmpresaRequestDTO(Empresa obj){
         this.nome = obj.getNome();

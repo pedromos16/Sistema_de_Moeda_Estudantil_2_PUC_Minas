@@ -41,14 +41,11 @@ public class VantagemService {
     }
 
     @Transactional
-    public void addVantagem(VantagemRequestDTO objDTO) {
-
+    public Vantagem addVantagem(VantagemRequestDTO objDTO) {
             Empresa emp = empresaService.getById(objDTO.getEmpresaId());
             Vantagem vantagem = objDTO.build();
             vantagem.setEmpresa(emp);
-            repository.save(vantagem);
-            emp.addVantagem(vantagem);
-            empresaService.insert(new EmpresaRequestDTO(emp));
+        return repository.save(vantagem);
     }
 
     @Transactional

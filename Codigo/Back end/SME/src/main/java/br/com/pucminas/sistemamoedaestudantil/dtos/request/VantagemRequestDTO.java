@@ -31,6 +31,6 @@ public class VantagemRequestDTO {
       vantagem.setValor(this.valor);
       vantagem.setDescricao(this.descricao);
       vantagem.setImagem(this.imagem);
-        return vantagem;
+      return vantagem;
     }
 }

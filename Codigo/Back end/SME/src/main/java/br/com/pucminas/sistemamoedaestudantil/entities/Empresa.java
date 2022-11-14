@@ -1,12 +1,15 @@
 package br.com.pucminas.sistemamoedaestudantil.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,9 +21,9 @@ public class Empresa extends Usuario implements Serializable {
 
     String cnpj;
     Double saldo;
-    @OneToMany
-    @JoinColumn(name = "empresa")
-    private Set<Vantagem> vantagems = new HashSet<>();
+    @OneToMany(mappedBy = "empresa")
+    @JsonIgnoreProperties("empresa")
+    private List<Vantagem> vantagems = new ArrayList<>();
 
     public void addVantagem(Vantagem obj)
     {

@@ -44,10 +44,7 @@ public class VantagemController {
 
     @PostMapping(value = "/cadastrar")
     public ResponseEntity findAllListagens(@RequestBody VantagemRequestDTO objDto) {
-
-        service.addVantagem(objDto);
-
-        return ResponseEntity.ok().body(objDto);
+        return ResponseEntity.ok().body(service.addVantagem(objDto));
     }
 
 }
