@@ -30,7 +30,7 @@ public class LoginController {
         try{
             user = loginService.validarLogin(dto.getEmail(), dto.getSenha());
         }catch(IllegalArgumentException e){
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(401).body(e.getMessage());
         }
         return ResponseEntity.ok().body(user);
     }
