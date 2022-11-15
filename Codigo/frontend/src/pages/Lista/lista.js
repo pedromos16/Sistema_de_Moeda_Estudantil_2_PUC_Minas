@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { isProfessor } from "../../services/auth";
 import api from "../../services/service";
 
 function Lista() {
@@ -25,6 +26,7 @@ function Lista() {
                   <tr>
                     <th>Nome</th>
                     <th scope="col">Email</th>
+                    {isProfessor() ? <th scope="col">Acoes</th> : ""}
                   </tr>
                 </thead>
                 <tbody>
@@ -36,6 +38,14 @@ function Lista() {
                           <a href={`/aluno/${aluno.id}`}>{aluno.nome}</a>
                         </th>
                         <td>{aluno.email}</td>
+                        {isProfessor ? (
+                          <td>
+                            {" "}
+                            <a href={`/aluno/${aluno.id}`}>Enviar Moedas</a>
+                          </td>
+                        ) : (
+                          ""
+                        )}
                       </tr>
                     </>
                   ))}
@@ -46,6 +56,7 @@ function Lista() {
             "Nao existem alunos cadastrados"
           )}
         </div>{" "}
+        <a href="/cadastro/aluno">Cadastrar Aluno</a>
         <h1>Empresas</h1>
         <div>
           <div>
@@ -79,6 +90,7 @@ function Lista() {
             )}
           </div>{" "}
         </div>{" "}
+        <a href="/cadastro/empresa">Cadastrar Empresa</a>
         <h1>Professores</h1>
         <div>
           {professores.length > 0 ? (

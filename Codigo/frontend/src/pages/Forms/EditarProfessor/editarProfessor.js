@@ -1,39 +1,41 @@
 import React from "react";
-import api from "../../services/service";
+import { useParams } from "react-router-dom";
+import api from "../../../services/service";
 
-export default function CadastrarAluno() {
+export default function EditarProfessor() {
   const [formData, setFormData] = React.useState({
     nome: "",
     email: "",
     senha: "",
     cpf: "",
-    rg: "",
-    endereco: "",
-    saldo: 0,
   });
 
+  const { id } = useParams();
+
   function handleChange(event) {
-    const { name, value, type, checked } = event.target;
+    const { name, value } = event.target;
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
-        [name]: type === "checkbox" ? checked : value,
+        [name]: value,
       };
     });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    api.post("/aluno/cadastrar", formData).then((res) => {
-      console.log(res.data);
-      // window.location.href = `/aluno/${res.data.id}`;
-    });
-    console.log(formData);
+    api
+      .put(`/update/id/${id}`, formData)
+      .then((res) => (window.location.href = `/professor/${res.data.id}`));
   }
+
+  React.useEffect(() => {
+    api.get(`/professor/mostrar/id/${id}`).then((res) => setFormData(res.data));
+  }, [id]);
 
   return (
     <>
-      <h1>Cadastrar Aluno</h1>
+      <h1>Editar {formData.nome}</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -62,20 +64,6 @@ export default function CadastrarAluno() {
           onChange={handleChange}
           name="cpf"
           value={formData.cpf}
-        />
-        <input
-          type="text"
-          placeholder="RG"
-          onChange={handleChange}
-          name="rg"
-          value={formData.rg}
-        />
-        <input
-          type="text"
-          placeholder="Endereco"
-          onChange={handleChange}
-          name="endereco"
-          value={formData.endereco}
         />
         <button>Submit</button>
       </form>

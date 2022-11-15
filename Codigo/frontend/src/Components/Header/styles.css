@@ -1,0 +1,11 @@
+header {
+  width: 100vw;
+  padding: 20px 10px;
+  background: lavenderblush;
+  margin-bottom: 20px;
+  box-shadow: MistyRose 0px 7px 29px 0px;
+}
+
+ul {
+  display: flex;
+}

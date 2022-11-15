@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import api from "../../services/service";
+import api from "../../../services/service";
 
 export default function EditarEmpresa() {
   const [formData, setFormData] = React.useState({
@@ -11,11 +11,11 @@ export default function EditarEmpresa() {
   const { id } = useParams();
 
   function handleChange(event) {
-    const { name, value, type, checked } = event.target;
+    const { name, value } = event.target;
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
-        [name]: type === "checkbox" ? checked : value,
+        [name]: value,
       };
     });
   }
@@ -25,7 +25,6 @@ export default function EditarEmpresa() {
     api
       .put(`/update/id/${id}`, formData)
       .then((res) => (window.location.href = `/empresa/${res.data.id}`));
-    console.log(formData);
   }
 
   React.useEffect(() => {

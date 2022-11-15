@@ -3,19 +3,15 @@ import api from "../../services/service";
 
 export default function Transacao() {
   const [formData, setFormData] = React.useState({
-    alunoId: 0,
-    professorId: 0,
-    valor: 0.0,
+    alunoId: null,
+    professorId: null,
+    valor: null,
+    descricao: "",
   });
 
   function handleChange(event) {
-    const { name, value, type, checked } = event.target;
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [name]: type === "checkbox" ? checked : value,
-      };
-    });
+    const { name, value } = event.target;
+    setFormData({ [name]: value });
   }
 
   function handleSubmit(event) {
@@ -23,7 +19,6 @@ export default function Transacao() {
     api
       .post("/transacao/cadastrar/byprofessor", formData)
       .then((res) => alert("Transacao realizada!"));
-    console.log(formData);
   }
 
   return (
@@ -50,6 +45,13 @@ export default function Transacao() {
           onChange={handleChange}
           name="valor"
           value={formData.valor}
+        />
+        <input
+          type="text"
+          placeholder="Descricao"
+          onChange={handleChange}
+          name="descricao"
+          value={formData.descricao}
         />
         <button>Submit</button>
       </form>

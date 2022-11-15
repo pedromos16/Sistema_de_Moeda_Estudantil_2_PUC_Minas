@@ -1,3 +1,14 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("https://img.freepik.com/free-vector/watercolor-sugar-cotton-clouds-background_52683-80661.jpg?w=2000");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 thead,
 tfoot {
   background-color: #3f87a6;
@@ -29,4 +40,12 @@ th {
 
 td {
   text-align: center;
+}
+
+h1,
+h2,
+h3,
+a {
+  /* you decided what tags would most likely contain text to apply that style */
+  color: #d2005b;
 }

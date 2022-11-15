@@ -21,7 +21,7 @@ function Professor() {
       .then((res) => setProfessor(res.data));
 
     api
-      .get(`/transacao/listar/professor?id={${id}}`)
+      .get(`/transacao/listar/professor?id=${id}`)
       .then((res) => setTransacoes(res.data));
   }, [id]);
 
@@ -31,7 +31,7 @@ function Professor() {
         <h1>Professor</h1>
         <p>{professor.nome}</p>
         <p>{professor.email}</p>
-        <p>{professor.moedas}</p>
+        <p>Quantidade de moedas disponiveis:{professor.moedas}</p>
         <h2>Transacoes</h2>
         <div>
           {transacoes.length > 0 ? (
