@@ -15,11 +15,20 @@ public class VantagemRequestDTO {
     Double preco;
     String imagem;
 
+<<<<<<< Updated upstream
     public VantagemRequestDTO(Vantagem vantagem){
         this.id = vantagem.getId();
         this.descricao = vantagem.getDescricao();
         this.preco = vantagem.getPreco();
         this.imagem = vantagem.getImagem();
+=======
+    public VantagemRequestDTO(Vantagem obj){
+        this.id = obj.getId();
+            this.empresaId = obj.getEmpresa().getId();
+        this.valor = obj.getValor();
+        this.descricao = obj.getDescricao();
+        this.imagem = obj.getImagem();
+>>>>>>> Stashed changes
     }
 
     public Vantagem build(){
