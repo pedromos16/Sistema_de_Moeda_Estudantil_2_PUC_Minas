@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { loginAuth } from "../../services/auth";
 import api from "../../services/service";
 
-function SignIn() {
+export default function SignIn() {
   const [formData, setFormData] = React.useState({
     email: "",
     senha: "",
@@ -26,7 +26,9 @@ function SignIn() {
     try {
       const res = await api.post("/login", formData);
       loginAuth(res.data.id, res.data.roleId);
+      localStorage.setItem("user", JSON.stringify(res.data));
       navigate("/dashboard");
+      console.log(res.data);
     } catch (err) {
       alert(err.response.data);
     }
@@ -78,5 +80,3 @@ function SignIn() {
     </>
   );
 }
-
-export default SignIn();
