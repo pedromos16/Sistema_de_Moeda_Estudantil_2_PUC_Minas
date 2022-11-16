@@ -35,7 +35,12 @@ function Aluno() {
 
   function handleChange(event) {
     const { name, value } = event.target;
-    setFormData({ [name]: value });
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: value,
+      };
+    });
   }
 
   function handleSubmit(event) {

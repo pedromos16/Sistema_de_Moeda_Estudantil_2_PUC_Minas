@@ -63,7 +63,6 @@ function Lista() {
             "Nao existem alunos cadastrados"
           )}
         </div>{" "}
-        <a href="/cadastro/aluno">Cadastrar Aluno</a>
         <h1>Empresas</h1>
         <div>
           <div>
@@ -97,7 +96,6 @@ function Lista() {
             )}
           </div>{" "}
         </div>{" "}
-        <a href="/cadastro/empresa">Cadastrar Empresa</a>
         <h1>Professores</h1>
         <div>
           {professores.length > 0 ? (

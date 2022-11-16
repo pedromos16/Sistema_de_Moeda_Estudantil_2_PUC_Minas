@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-  Navigate,
-} from "react-router-dom";
-import { isAuthenticated, loginAuth } from "../../services/auth";
+import { useNavigate } from "react-router-dom";
+import { loginAuth } from "../../services/auth";
 import api from "../../services/service";
 
 function SignIn() {
@@ -37,9 +32,7 @@ function SignIn() {
     }
   }
 
-  return isAuthenticated() ? (
-    <Navigate to={{ pathname: "/dashboard" }} />
-  ) : (
+  return (
     <>
       <div
         style={{
@@ -86,15 +79,4 @@ function SignIn() {
   );
 }
 
-function withRouter(Component) {
-  function ComponentWithRouterProp(props) {
-    let location = useLocation();
-    let navigate = useNavigate();
-    let params = useParams();
-    return <Component {...props} router={{ location, navigate, params }} />;
-  }
-
-  return ComponentWithRouterProp;
-}
-
-export default withRouter(SignIn);
+export default SignIn();
