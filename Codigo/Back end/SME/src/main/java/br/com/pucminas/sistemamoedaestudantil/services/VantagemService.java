@@ -1,16 +1,23 @@
 package br.com.pucminas.sistemamoedaestudantil.services;
 
+import br.com.pucminas.sistemamoedaestudantil.dtos.request.EmpresaRequestDTO;
+import br.com.pucminas.sistemamoedaestudantil.dtos.request.VantagemRequestDTO;
+import br.com.pucminas.sistemamoedaestudantil.entities.Empresa;
 import br.com.pucminas.sistemamoedaestudantil.entities.Vantagem;
+import br.com.pucminas.sistemamoedaestudantil.repositories.TransacaoRepository;
 import br.com.pucminas.sistemamoedaestudantil.repositories.VantagemRepository;
+import org.aspectj.apache.bcel.classfile.LocalVariableTable;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.InvalidTransactionException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class VantagemService {
@@ -18,49 +25,53 @@ public class VantagemService {
     @Autowired
     private VantagemRepository repository;
 
+    @Autowired
+    private EmpresaService empresaService;
+
+
     @Transactional
-    public List<Vantagem> findAll(){
-        List<Vantagem> listResponse = repository.findAll();
-        return listResponse;
+    public Vantagem getById(Integer id) throws Exception {
+        try{
+            Optional<Vantagem> obj = repository.findById(id);
+            return obj.orElseThrow(()-> new ObjectNotFoundException(1,
+                    "Vantagem não encontrada.\n Id: " + id));
+        }catch(Exception e){
+            throw new Exception("Vantagem não encontrada");
+        }
     }
 
     @Transactional
-    public Vantagem getById(Integer id){
-        Optional<Vantagem> obj = repository.findById(id);
-        return obj.orElseThrow(()-> new ObjectNotFoundException(1,
+    public Vantagem addVantagem(VantagemRequestDTO objDTO) {
+            Empresa emp = empresaService.getById(objDTO.getEmpresaId());
+            Vantagem vantagem = objDTO.build();
+            vantagem.setEmpresa(emp);
+        return repository.save(vantagem);
+    }
+
+    @Transactional
+    public List<Vantagem> listarVantagem() {
+        List<Vantagem>  listaVantagem = repository.findAll();
+
+        return listaVantagem;
+
+    }
+
+    @Transactional
+    public Vantagem listarVantagem(Integer id) {
+        Optional<Vantagem> vantagem = repository.findById(id);
+
+        return vantagem.orElseThrow(()-> new ObjectNotFoundException(1,
                 "Vantagem não encontrada.\n Id: " + id));
+
     }
 
     @Transactional
-    public ResponseEntity<Vantagem> insert(Vantagem obj){
-        Vantagem resp = repository.save(obj);
-        return ResponseEntity.ok().body(resp);
-    }
-
-    @Transactional
-    public void deleteById(Integer id){
+    public void deleteById(Integer id) throws Exception {
         getById(id);
         try{
             repository.deleteById(id);
         }catch(DataIntegrityViolationException e){
-            throw new DataIntegrityViolationException("Não foi possivel excluir esta vantagem.");
+            throw new DataIntegrityViolationException("Não foi possivel essa vantagem");
         }
     }
-    @Transactional
-    public Vantagem update(Integer id, Vantagem obj) {
-
-        try{
-            Vantagem newVantagem = repository.getReferenceById(id);
-            newVantagem.setDescricao(obj.getDescricao());
-            newVantagem.setImagem(obj.getImagem());
-            newVantagem.setPreco(obj.getPreco());
-            return repository.save(newVantagem);
-        }catch(DataIntegrityViolationException e){
-            throw new DataIntegrityViolationException("Não foi possivel editar esta vantagem.");
-        }
-
-
-
-    }
-
 }
