@@ -15,7 +15,14 @@ function Lista() {
 
   return (
     <>
-      <div style={{ textAligment: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: 30,
+        }}
+      >
         <h1>Alunos</h1>
         <div>
           {alunos.length > 0 ? (

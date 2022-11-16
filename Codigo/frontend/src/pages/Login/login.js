@@ -64,6 +64,7 @@ function SignIn() {
             onChange={handleChange}
             name="email"
             value={formData.email}
+            required
           />
           <input
             type="password"
@@ -71,6 +72,7 @@ function SignIn() {
             onChange={handleChange}
             name="senha"
             value={formData.senha}
+            required
           />
           <button>Entrar</button>
         </form>
