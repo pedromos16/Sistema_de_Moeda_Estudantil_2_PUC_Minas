@@ -10,8 +10,6 @@ import "./styles.css";
 const Header = () => {
   return (
     <header>
-      <p>{`${isAuthenticated()}`}</p>
-      <p>{`${getId()}`}</p>
       {isAuthenticated() ? (
         <nav>
           <ul>

@@ -26,7 +26,7 @@ function Lista() {
                   <tr>
                     <th>Nome</th>
                     <th scope="col">Email</th>
-                    {isProfessor() ? <th scope="col">Acoes</th> : ""}
+                    {isProfessor ? <th scope="col">Acoes</th> : ""}
                   </tr>
                 </thead>
                 <tbody>

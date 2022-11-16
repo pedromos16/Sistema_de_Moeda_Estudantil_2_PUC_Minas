@@ -11,12 +11,12 @@ body {
 }
 thead,
 tfoot {
-  background-color: #3f87a6;
+  background-color: #d2005b;
   color: #fff;
 }
 
 tbody {
-  background-color: #e4f0f5;
+  background-color: lavenderblush;
 }
 
 caption {
@@ -26,7 +26,7 @@ caption {
 
 table {
   border-collapse: collapse;
-  border: 2px solid rgb(200, 200, 200);
+  border: 2px solid rgb(200, 183, 183);
   letter-spacing: 1px;
   font-family: sans-serif;
   font-size: 0.8rem;

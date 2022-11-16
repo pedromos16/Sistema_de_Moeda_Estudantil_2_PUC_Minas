@@ -1,13 +1,20 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  Navigate,
+} from "react-router-dom";
 import { isAuthenticated, loginAuth } from "../../services/auth";
 import api from "../../services/service";
 
-export default function SignIn() {
+function SignIn() {
   const [formData, setFormData] = React.useState({
     email: "",
     senha: "",
   });
+
+  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -24,6 +31,7 @@ export default function SignIn() {
     try {
       const res = await api.post("/login", formData);
       loginAuth(res.data.id, res.data.roleId);
+      navigate("/dashboard");
     } catch (err) {
       alert(err.response.data);
     }
@@ -75,3 +83,16 @@ export default function SignIn() {
     </>
   );
 }
+
+function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return <Component {...props} router={{ location, navigate, params }} />;
+  }
+
+  return ComponentWithRouterProp;
+}
+
+export default withRouter(SignIn);

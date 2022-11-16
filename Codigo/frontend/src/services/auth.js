@@ -11,9 +11,7 @@ export const logout = () => {
   localStorage.clear();
 };
 
-export const getId = () => {
-  return localStorage.getItem("id");
-};
+export const getId = () => localStorage.getItem("id");
 
 export const isAluno = () => {
   const roleId = localStorage.getItem("roleId");
