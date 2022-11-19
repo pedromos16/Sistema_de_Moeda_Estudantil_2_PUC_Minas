@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -27,5 +28,9 @@ public class Vantagem implements Serializable {
     private String descricao;
     private double valor;
     private String imagem;
+
+    @OneToMany
+    @JsonIgnore
+    private List<Compra> compras;
 
 }

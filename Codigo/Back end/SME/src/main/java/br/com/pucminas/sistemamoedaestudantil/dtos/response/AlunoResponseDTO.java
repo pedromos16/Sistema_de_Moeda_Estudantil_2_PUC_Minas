@@ -1,9 +1,13 @@
 package br.com.pucminas.sistemamoedaestudantil.dtos.response;
 
 import br.com.pucminas.sistemamoedaestudantil.entities.Aluno;
+import br.com.pucminas.sistemamoedaestudantil.entities.Compra;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,7 +23,10 @@ public class AlunoResponseDTO {
     private Integer roleID;
     private String cpf;
 
+    private List<Compra> compras;
+
     public AlunoResponseDTO(Aluno aluno){
+        this.compras = new ArrayList<>();
         this.id = aluno.getId();
         this.email = aluno.getEmail();
         this.endereco = aluno.getEndereco();
@@ -28,5 +35,6 @@ public class AlunoResponseDTO {
         this.saldo = aluno.getSaldo();
         this.cpf = aluno.getCpf();
         this.roleID = 1;
+        this.compras = aluno.getCompras();
     }
 }

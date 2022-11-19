@@ -31,6 +31,10 @@ public class AlunoService {
         return listResponse.stream().map(AlunoResponseDTO::new).collect(Collectors.toList());
     }
 
+    public void save(Aluno aluno){
+        repository.save(aluno);
+    }
+
     public void subtrairMoedas(double valor, Integer id) throws Exception {
         Aluno aluno = getById(id);
         if(aluno.getSaldo() - valor > 0){
@@ -47,25 +51,15 @@ public class AlunoService {
         repository.save(aluno);
     }
 
-    @Transactional
-    public boolean validarSaldo(double current, double subtraction){
-        if(current - subtraction < 0) return false;
-            return true;
-    }
-
     public Aluno findByEmail(String email){
         return repository.findByEmail(email);
     }
 
     @Transactional
-    public Aluno getById(Integer id) throws Exception {
-        try{
-            Optional<Aluno> obj = repository.findById(id);
-            return obj.orElseThrow(()-> new ObjectNotFoundException(1,
-                    "Aluno não encontrado.\n Id: " + id));
-        }catch(Exception e){
-            throw new Exception("Aluno não encontrado");
-        }
+    public Aluno getById(Integer id) throws ObjectNotFoundException {
+        Optional<Aluno> obj = repository.findById(id);
+        return obj.orElseThrow(()-> new ObjectNotFoundException(1,
+                "Aluno não encontrado.\n Id: " + id));
     }
 
     @Transactional

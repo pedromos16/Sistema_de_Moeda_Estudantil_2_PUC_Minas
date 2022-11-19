@@ -23,7 +23,7 @@ public class TransacaoController {
 // TODO: Listar transacoes pelo Id do aluno/professor
 
     @GetMapping(value="/listar/professor")
-    public ResponseEntity findAllTransactionByProfessorId(@RequestParam("id") Integer id){
+    public ResponseEntity<?> findAllTransactionByProfessorId(@RequestParam("id") Integer id){
         List<TransacaoResponseDTO> list = service.findAllTransactionByProfessorId(id);
         if(list.isEmpty())
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Nenhuma transação encontrada para este professor");
@@ -31,7 +31,7 @@ public class TransacaoController {
     }
 
     @GetMapping(value="/listar/aluno")
-    public ResponseEntity findAllTransactionByAlunoId(@RequestParam("id") Integer id){
+    public ResponseEntity<?> findAllTransactionByAlunoId(@RequestParam("id") Integer id){
         List<TransacaoResponseDTO> list = service.findAllTransactionByAlunoId(id);
         if(list.isEmpty())
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Nenhuma transação encontrada para este aluno");
@@ -39,13 +39,13 @@ public class TransacaoController {
     }
 
     @PostMapping(value = "/cadastrar/byprofessor")
-    public ResponseEntity insertByProfessor (@RequestBody TransacaoRequestDTO dto) throws Exception {
+    public ResponseEntity<?> insertByProfessor (@RequestBody TransacaoRequestDTO dto) throws Exception {
         ResponseEntity resp = service.insertByProfessor(dto);
         return resp;
     }
 
     @PostMapping(value = "/cadastrar/byaluno")
-    public ResponseEntity insertByAluno (@RequestBody TransacaoRequestDTO dto) throws Exception {
+    public ResponseEntity<?> insertByAluno (@RequestBody TransacaoRequestDTO dto) throws Exception {
         ResponseEntity resp = service.insertByAluno(dto);
         return resp;
     }

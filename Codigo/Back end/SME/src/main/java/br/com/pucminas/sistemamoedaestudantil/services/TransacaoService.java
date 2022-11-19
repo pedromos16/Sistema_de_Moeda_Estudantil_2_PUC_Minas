@@ -34,14 +34,10 @@ public class TransacaoService {
     private AlunoService alunoService;
 
     @Transactional
-    public Transacao getById(Integer id) throws Exception {
-        try{
-            Optional<Transacao> obj = repository.findById(id);
-            return obj.orElseThrow(()-> new ObjectNotFoundException(1,
-                    "Transacao não encontrada.\n Id: " + id));
-        }catch(Exception e){
-            throw new Exception("Transacao não encontrado");
-        }
+    public Transacao getById(Integer id) throws ObjectNotFoundException {
+        Optional<Transacao> obj = repository.findById(id);
+        return obj.orElseThrow(()-> new ObjectNotFoundException(1,
+                "Transacao não encontrada.\n Id: " + id));
     }
 
     @Transactional
@@ -49,14 +45,14 @@ public class TransacaoService {
         try{
             professorService.subtrairMoedas(objDTO.getValor(), objDTO.getProfessorId());
             alunoService.adicionarMoedas(objDTO.getValor(), objDTO.getAlunoId());
+            Transacao obj = fromDTO(objDTO);
+            obj.setDe("Professor");
+            obj.setPara("Aluno");
+            obj = repository.save(obj);
+            return ResponseEntity.ok().body(new TransacaoRequestDTO(obj));
         }catch(InvalidTransactionException e){
             return ResponseEntity.ok().body(e.getMessage());
         }
-        Transacao obj = fromDTO(objDTO);
-        obj.setDe("Professor");
-        obj.setPara("Aluno");
-        obj = repository.save(obj);
-        return ResponseEntity.ok().body(new TransacaoRequestDTO(obj));
     }
 
     @Transactional
