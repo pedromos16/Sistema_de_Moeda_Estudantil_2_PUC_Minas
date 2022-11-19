@@ -30,14 +30,16 @@ public class VantagemService {
 
 
     @Transactional
-    public Vantagem getById(Integer id) throws Exception {
+    public Vantagem getById(Integer id) throws ObjectNotFoundException {
         try{
-            Optional<Vantagem> obj = repository.findById(id);
-            return obj.orElseThrow(()-> new ObjectNotFoundException(1,
-                    "Vantagem não encontrada.\n Id: " + id));
-        }catch(Exception e){
-            throw new Exception("Vantagem não encontrada");
+        Optional<Vantagem> obj = repository.findById(id);
+        return obj.orElseThrow(()-> new ObjectNotFoundException(1,
+                "Vantagem não encontrada.\n Id: " + id));
+
+        }catch(ObjectNotFoundException e){
+            throw new ObjectNotFoundException(404, "Vantagem não encontrada");
         }
+
     }
 
     @Transactional
@@ -57,12 +59,13 @@ public class VantagemService {
     }
 
     @Transactional
-    public Vantagem listarVantagem(Integer id) {
-        Optional<Vantagem> vantagem = repository.findById(id);
+    public List<Vantagem> listarVantagemByEmpresaId(Integer id) throws ObjectNotFoundException{
+        List<Vantagem> vantagens = repository.findAllByEmpresaId(id);
 
-        return vantagem.orElseThrow(()-> new ObjectNotFoundException(1,
-                "Vantagem não encontrada.\n Id: " + id));
+        if(vantagens.size() > 0)
+            return vantagens;
 
+         throw new ObjectNotFoundException(1, "Vantagem não encontrada.\n Id: " + id);
     }
 
     @Transactional
