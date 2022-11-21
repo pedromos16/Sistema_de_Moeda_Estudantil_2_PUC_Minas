@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { isProfessor } from "../../services/auth";
+import { Link } from "react-router-dom";
+// import { isProfessor } from "../../services/auth";
 import api from "../../services/service";
 
 function Lista() {
@@ -33,7 +34,7 @@ function Lista() {
                   <tr>
                     <th>Nome</th>
                     <th scope="col">Email</th>
-                    {isProfessor ? <th scope="col">Acoes</th> : ""}
+                    {/* {isProfessor ? <th scope="col">Acoes</th> : ""} */}
                   </tr>
                 </thead>
                 <tbody>
@@ -42,17 +43,9 @@ function Lista() {
                       <tr>
                         <th scope="row">
                           {" "}
-                          <a href={`/aluno/${aluno.id}`}>{aluno.nome}</a>
+                          <Link to={`/aluno/${aluno.id}`}>{aluno.nome}</Link>
                         </th>
                         <td>{aluno.email}</td>
-                        {isProfessor ? (
-                          <td>
-                            {" "}
-                            <a href={`/aluno/${aluno.id}`}>Enviar Moedas</a>
-                          </td>
-                        ) : (
-                          ""
-                        )}
                       </tr>
                     </>
                   ))}
@@ -81,9 +74,9 @@ function Lista() {
                         <tr>
                           <th scope="row">
                             {" "}
-                            <a href={`/empresa/${empresa.id}`}>
+                            <Link to={`/empresa/${empresa.id}`}>
                               {empresa.cnpj}
-                            </a>
+                            </Link>
                           </th>
                         </tr>
                       </>
@@ -114,9 +107,9 @@ function Lista() {
                       <tr>
                         <th scope="row">
                           {" "}
-                          <a href={`/professor/${professor.id}`}>
+                          <Link to={`/professor/${professor.id}`}>
                             {professor.nome}
-                          </a>
+                          </Link>
                         </th>
                         <td>{professor.email}</td>
                       </tr>

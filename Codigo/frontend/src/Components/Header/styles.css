@@ -6,6 +6,16 @@ header {
   box-shadow: MistyRose 0px 7px 29px 0px;
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
 ul {
   display: flex;
+  grid-gap: 20px;
+}
+
+li {
+  list-style: none;
 }

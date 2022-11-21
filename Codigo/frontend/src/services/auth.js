@@ -1,38 +1,43 @@
+import { useNavigate } from "react-router-dom";
+
 export const isAuthenticated = () => {
-  return !!localStorage.getItem("id");
+  return !!window.localStorage.getItem("id");
 };
 
 export const loginAuth = (id, roleId) => {
-  localStorage.setItem("id", id);
-  localStorage.setItem("roleId", roleId);
+  window.localStorage.setItem("id", id);
+  window.localStorage.setItem("roleId", roleId);
 };
 
 export const logout = () => {
-  localStorage.clear();
+  const navigate = useNavigate;
+  window.localStorage.clear();
+  navigate("/login");
 };
 
-export const getId = () => localStorage.getItem("id");
+export const getId = () => window.localStorage.getItem("id");
+export const getRoleId = () => window.localStorage.getItem("roleId");
 
 export const isAluno = () => {
-  const roleId = localStorage.getItem("roleId");
-  return roleId === 1 ? true : false;
+  const roleId = window.localStorage.getItem("roleId");
+  return roleId === "1" ? true : false;
 };
 
 export const isProfessor = () => {
-  const roleId = localStorage.getItem("roleId");
-  return roleId === 2 ? true : false;
+  const roleId = window.localStorage.getItem("roleId");
+  return roleId === "2" ? true : false;
 };
 
 export const isEmpresa = () => {
-  const roleId = localStorage.getItem("roleId");
-  return roleId === 3 ? true : false;
+  const roleId = window.localStorage.getItem("roleId");
+  return roleId === "3" ? true : false;
 };
 
 export const getType = () => {
-  const roleId = localStorage.getItem("roleId");
-  if (roleId === 1) {
+  const roleId = window.localStorage.getItem("roleId");
+  if (roleId === "1") {
     return "aluno";
-  } else if (roleId === 2) {
+  } else if (roleId === "2") {
     return "professor";
   } else {
     return "empresa";

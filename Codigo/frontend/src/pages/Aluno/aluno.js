@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getId, isAluno, isProfessor } from "../../services/auth";
 import api from "../../services/service";
 
@@ -8,7 +8,7 @@ function Aluno() {
   const [transacoes, setTransacoes] = useState({});
 
   const { id } = useParams();
-  const myAccount = isAluno() && getId() === id;
+  const myAccount = getId() === id && isAluno();
 
   function handleClick(event) {
     event.preventDefault();
@@ -58,15 +58,46 @@ function Aluno() {
       .then((res) => setTransacoes(res.data));
   }, [id]);
 
+  const compras = aluno.compras !== undefined ? aluno.compras : [];
+
   return (
     <>
-      <div style={{ textAligment: "center" }}>
+      <div className="centered-container">
         <h1>Aluno</h1>
-        <p>{aluno.nome}</p>
-        <p>{aluno.email}</p>
+        <table>
+          <tr>
+            <th>Nome:</th>
+            <td>{aluno.nome}</td>
+          </tr>
+          <tr>
+            <th>Email:</th>
+            <td>{aluno.email}</td>
+          </tr>
+          {myAccount ? (
+            <>
+              <tr>
+                <th>CPF:</th>
+                <td>{aluno.cpf}</td>
+              </tr>
+              <tr>
+                <th>RG:</th>
+                <td>{aluno.rg}</td>
+              </tr>
+              <tr>
+                <th>Endereco:</th>
+                <td>{aluno.endereco}</td>
+              </tr>
+              <tr>
+                <th>Saldo:</th>
+                <td>{aluno.saldo}</td>
+              </tr>
+            </>
+          ) : (
+            ""
+          )}
+        </table>
         {myAccount ? (
           <>
-            <p>Saldo: {aluno.saldo}</p>
             <h2>Extrato</h2>
             <div>
               {transacoes.length > 0 ? (
@@ -85,9 +116,9 @@ function Aluno() {
                           <tr>
                             <th scope="row">
                               {" "}
-                              <a href={`/professor/${transacao.idProfessor}`}>
+                              <Link to={`/professor/${transacao.idProfessor}`}>
                                 {transacao.nomeProfessor}
-                              </a>
+                              </Link>
                             </th>
                             <td>{transacao.valor}</td>
                           </tr>
@@ -99,10 +130,37 @@ function Aluno() {
               ) : (
                 "Ainda nao foram realizadas transacoes"
               )}
+            </div>
+            <div>
+              {compras.length > 0 ? (
+                <>
+                  <table>
+                    <caption>Compras realizadas</caption>
+                    <thead>
+                      <tr>
+                        <th>Produto</th>
+                        <th scope="col">Valor</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {compras.map((compra) => (
+                        <>
+                          <tr>
+                            <th scope="row">{compra.descricao}</th>
+                            <td>{compra.valor}</td>
+                          </tr>
+                        </>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
+              ) : (
+                "Voce ainda nao comprou nada"
+              )}
             </div>{" "}
             <br></br>
             <button onClick={(e) => handleClick(e)}> Deletar </button>
-            <a href={`/editar/aluno/${id}`}>Editar Aluno</a>
+            <Link to={`/editar/aluno/${id}`}>Editar Aluno</Link>
           </>
         ) : (
           ""

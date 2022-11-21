@@ -33,23 +33,9 @@ export default function CadastrarAluno() {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
+      <div className="centered-container">
         <h1>Cadastrar Aluno</h1>
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gridGap: 10,
-            width: 500,
-          }}
-        >
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Nome"
