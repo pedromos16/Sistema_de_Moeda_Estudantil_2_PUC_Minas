@@ -125,14 +125,47 @@ Endpoint: /aluno/mostrar/id/{id}
 Exemplo de Json de retorno:
 
 >{
->   "id": 1,
+>   "id": 2,
 >   "nome": "Pedro",
->   "email": "pedro@gmail.com",
+>   "email": "pedro123@gmail.com",
 >   "rg": "31278378192312",
 >   "endereco": "sla 123",
->   "saldo": 59.0,
+>   "saldo": 5649.1,
+>   "roleID": 1,
 >   "cpf": "32897137812",
->   "roleID": 1
+>   "compras": [
+>     {
+>       "id": 1,
+>       "vantagens": [
+>         {
+>           "id": 1,
+>           "descricao": "Shulambs",
+>           "valor": 150.1,
+>           "imagem": "png"
+>         },
+>         {
+>           "id": 2,
+>           "descricao": "Shulambs",
+>           "valor": 150.1,
+>           "imagem": "png"
+>         }
+>       ],
+>       "valor": 300.2
+>      },
+>     {
+>        "id": 3,
+>       "vantagens": [
+>         {
+>           "id": 3,
+>           "descricao": "Shulambs",
+>           "valor": 150.1,
+>           "imagem": "png"
+>          }
+>        ],
+>       "valor": 150.1
+>      }
+>    ]
+>  }
 >}
  
 - ###### Listar todos os alunos cadastrados
@@ -326,4 +359,18 @@ Exemplo de Json de retorno:
 >   }
 >]
 
+___
+
+### 5.5 Compras
+
+- ###### Realizar a compra de Vantagem(s)
+
+Endpoint: /compra/cadastrar
+
+Exemplo de Json:
+
+>{
+>   "alunoId": 2,
+>   "vantagensIds":[1,2,3]
+>}
 ___
