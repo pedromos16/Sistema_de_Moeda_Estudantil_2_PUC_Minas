@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginAuth } from "../../services/auth";
 import api from "../../services/service";
 
@@ -25,8 +25,9 @@ export default function SignIn() {
     event.preventDefault();
     try {
       const res = await api.post("/login", formData);
-      loginAuth(res.data.id, res.data.roleId);
-      localStorage.setItem("user", JSON.stringify(res.data));
+      console.log(res.data);
+      loginAuth(res.data.id, res.data.roleID);
+
       navigate("/dashboard");
       console.log(res.data);
     } catch (err) {
@@ -72,9 +73,9 @@ export default function SignIn() {
           <button>Entrar</button>
         </form>
         <div style={{ display: "flex", alignItems: "center", gridGap: 10 }}>
-          <a href="/cadastro/aluno">Fazer cadastro como Aluno</a>
+          <Link to="/cadastro/aluno">Fazer cadastro como Aluno</Link>
           <p>ou</p>
-          <a href="/cadastro/empresa">Fazer cadastro como Empresa</a>
+          <Link to="/cadastro/empresa">Fazer cadastro como Empresa</Link>
         </div>
       </div>
     </>

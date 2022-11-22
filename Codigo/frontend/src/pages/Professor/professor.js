@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { getId, isProfessor } from "../../services/auth";
 import api from "../../services/service";
 
 function Professor() {
@@ -7,6 +8,7 @@ function Professor() {
   const [transacoes, setTransacoes] = useState({});
 
   const { id } = useParams();
+  const myAccount = getId() === id && isProfessor();
 
   function handleClick(event) {
     event.preventDefault();
@@ -27,47 +29,77 @@ function Professor() {
 
   return (
     <>
-      <div style={{ textAligment: "center" }}>
+      <div className="centered-container">
         <h1>Professor</h1>
-        <p>{professor.nome}</p>
-        <p>{professor.email}</p>
-        <p>Quantidade de moedas disponiveis:{professor.moedas}</p>
-        <h2>Transacoes</h2>
-        <div>
-          {transacoes.length > 0 ? (
+        <table>
+          <tr>
+            <th>Nome:</th>
+            <td>{professor.nome}</td>
+          </tr>
+          <tr>
+            <th>Email:</th>
+            <td>{professor.email}</td>
+          </tr>
+          {myAccount ? (
             <>
-              <table>
-                <caption>Transacoes realizadas</caption>
-                <thead>
-                  <tr>
-                    <th>Aluno</th>
-                    <th scope="col">Quantidada de moedas</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {transacoes.map((transacao) => (
-                    <>
-                      <tr>
-                        <th scope="row">
-                          {" "}
-                          <a href={`/aluno/${transacao.idAluno}`}>
-                            {transacao.nomeAluno}
-                          </a>
-                        </th>
-                        <td>{transacao.valor}</td>
-                      </tr>
-                    </>
-                  ))}
-                </tbody>
-              </table>
+              <tr>
+                <th>CPF:</th>
+                <td>{professor.cpf}</td>
+              </tr>
+              <tr>
+                <th>Moedas:</th>
+                <td>{professor.moedas}</td>
+              </tr>
             </>
           ) : (
-            "Ainda nao foram realizadas transacoes"
+            ""
           )}
-        </div>{" "}
+        </table>
         <br></br>
-        <button onClick={(e) => handleClick(e)}> Deletar </button>
-        <a href={`/editar/professor/${id}`}>Editar Professor</a>
+        {myAccount ? (
+          <>
+            <h2>Transacoes</h2>
+            <div>
+              {transacoes.length > 0 ? (
+                <>
+                  <table>
+                    <caption>Transacoes realizadas</caption>
+                    <thead>
+                      <tr>
+                        <th>Aluno</th>
+                        <th scope="col">Quantidada de moedas</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {transacoes.map((transacao) => (
+                        <>
+                          <tr>
+                            <th scope="row">
+                              {" "}
+                              <Link to={`/aluno/${transacao.idAluno}`}>
+                                {transacao.nomeAluno}
+                              </Link>
+                            </th>
+                            <td>{transacao.valor}</td>
+                          </tr>
+                        </>
+                      ))}
+                    </tbody>
+                  </table>
+                </>
+              ) : (
+                "Ainda nao foram realizadas transacoes"
+              )}
+            </div>{" "}
+            <br></br>
+            <div>
+              <button onClick={(e) => handleClick(e)}> Deletar </button>
+              <Link to={`/editar/professor/${id}`}>Editar Professor</Link>
+            </div>
+          </>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

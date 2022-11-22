@@ -14,6 +14,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class EmpresaResponseDTO {
     private String nome;
+
+    private Integer id;
     private String email;
     private String senha;
     private String cnpj;
@@ -23,6 +25,7 @@ public class EmpresaResponseDTO {
 
 
     public EmpresaResponseDTO(Empresa obj){
+        this.id = obj.getId();
         this.nome = obj.getNome();
         this.email = obj.getEmail();
         this.senha = obj.getSenha();

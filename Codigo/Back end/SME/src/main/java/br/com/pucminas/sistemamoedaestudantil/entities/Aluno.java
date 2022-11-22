@@ -1,12 +1,14 @@
 package br.com.pucminas.sistemamoedaestudantil.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,4 +28,11 @@ public class Aluno extends Usuario implements Serializable {
     @JoinColumn(name = "aluno_id")
     @JsonIgnore
     private Set<Transacao> transacoes;
+
+    @OneToMany
+    @JoinColumn(name="aluno_id")
+    @JsonManagedReference
+    private List<Compra> compras;
+
+
 }
