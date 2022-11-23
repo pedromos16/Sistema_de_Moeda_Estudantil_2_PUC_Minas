@@ -3,15 +3,8 @@ import { useParams } from "react-router-dom";
 import api from "../../../services/service";
 
 export default function EditarAluno() {
-  const [formData, setFormData] = React.useState({
-    nome: "",
-    email: "",
-    senha: "",
-    cpf: "",
-    rg: "",
-    endereco: "",
-    saldo: 0,
-  });
+  const [formData, setFormData] = React.useState({});
+  const [aluno, setAluno] = React.useState({});
 
   const { id } = useParams();
 
@@ -27,18 +20,22 @@ export default function EditarAluno() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    console.log(formData);
     api
-      .put(`/update/id/${id}`, formData)
+      .put(`/aluno/update/id/${id}`, formData)
       .then((res) => (window.location.href = `/aluno/${res.data.id}`));
   }
 
   React.useEffect(() => {
-    api.get(`/aluno/mostrar/id/${id}`).then((res) => setFormData(res.data));
+    api.get(`/aluno/mostrar/id/${id}`).then((res) => {
+      setFormData(res.data);
+      setAluno(res.data);
+    });
   }, [id]);
 
   return (
     <>
-      <h1>Editar {formData.nome}</h1>
+      <h1>Editar {aluno.nome}</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

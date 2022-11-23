@@ -3,10 +3,7 @@ import { useParams } from "react-router-dom";
 import api from "../../../services/service";
 
 export default function EditarEmpresa() {
-  const [formData, setFormData] = React.useState({
-    cnpj: "",
-    saldo: 0,
-  });
+  const [formData, setFormData] = React.useState({});
 
   const { id } = useParams();
 
@@ -23,7 +20,7 @@ export default function EditarEmpresa() {
   function handleSubmit(event) {
     event.preventDefault();
     api
-      .put(`/update/id/${id}`, formData)
+      .put(`/empresa/update/id/${id}`, formData)
       .then((res) => (window.location.href = `/empresa/${res.data.id}`));
   }
 

@@ -3,12 +3,7 @@ import { useParams } from "react-router-dom";
 import api from "../../../services/service";
 
 export default function EditarProfessor() {
-  const [formData, setFormData] = React.useState({
-    nome: "",
-    email: "",
-    senha: "",
-    cpf: "",
-  });
+  const [formData, setFormData] = React.useState({});
 
   const { id } = useParams();
 
@@ -25,7 +20,7 @@ export default function EditarProfessor() {
   function handleSubmit(event) {
     event.preventDefault();
     api
-      .put(`/update/id/${id}`, formData)
+      .put(`/professor/update/id/${id}`, formData)
       .then((res) => (window.location.href = `/professor/${res.data.id}`));
   }
 
