@@ -47,6 +47,27 @@ function Empresa() {
       .then(() => window.location.reload(true));
   }
 
+  async function handleCompra(vantagemID) {
+    try {
+      await api.post("/compra/cadastrar", {
+        alunoId: id,
+        vantagensIds: [vantagemID],
+      });
+      alert("Compra realizada!");
+    } catch (err) {
+      alert(err.response.data);
+    }
+  }
+
+  async function handleDelete(vantagemID) {
+    try {
+      await api.delete(`/aluno/deletar/id/${vantagemID}`);
+      window.location.reload(true);
+    } catch (err) {
+      alert(err.response.data);
+    }
+  }
+
   const vantagens = empresa.vantagems !== undefined ? empresa.vantagems : [];
   return (
     <>
@@ -107,8 +128,35 @@ function Empresa() {
                       </th>
                       <th scope="row">{vantagem.descricao}</th>
                       <th scope="row">{vantagem.valor}</th>
-                      {isAluno() ? <th scope="row">Comprar</th> : ""}
-                      {myAccount ? <th scope="row">Deletar</th> : ""}
+                      {isAluno() ? (
+                        <th scope="row">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              handleCompra(vantagem.id);
+                            }}
+                          >
+                            Comprar
+                          </button>
+                        </th>
+                      ) : (
+                        ""
+                      )}
+                      {myAccount ? (
+                        <th scope="row">
+                          {" "}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              handleDelete(vantagem.id);
+                            }}
+                          >
+                            Deletar
+                          </button>
+                        </th>
+                      ) : (
+                        ""
+                      )}
                     </tr>
                   </>
                 ))}
