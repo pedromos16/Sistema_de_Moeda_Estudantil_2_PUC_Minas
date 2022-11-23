@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getId, isAluno, isProfessor } from "../../services/auth";
@@ -111,6 +112,7 @@ function Aluno() {
                       <tr>
                         <th>Professor</th>
                         <th scope="col">Quantidada de moedas</th>
+                        <th scope="col">Motivacao</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -124,6 +126,11 @@ function Aluno() {
                               </Link>
                             </th>
                             <td>{transacao.valor}</td>
+                            <td>
+                              {transacao.descricao
+                                ? transacao.descricao
+                                : "Sem descricao"}
+                            </td>
                           </tr>
                         </>
                       ))}
@@ -141,6 +148,7 @@ function Aluno() {
                     <caption>Compras realizadas</caption>
                     <thead>
                       <tr>
+                        <th></th>
                         <th>Produto</th>
                         <th scope="col">Valor</th>
                       </tr>
@@ -149,7 +157,17 @@ function Aluno() {
                       {compras.map((compra) => (
                         <>
                           <tr>
-                            <th scope="row">{compra.descricao}</th>
+                            <th scope="row">
+                              <img
+                                src={
+                                  compra.vantagens[0].imagem
+                                    ? compra.vantagens[0].imagem
+                                    : "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022.jpg"
+                                }
+                                width="100"
+                              />
+                            </th>
+                            <th scope="row">{compra.vantagens[0].descricao}</th>
                             <td>{compra.valor}</td>
                           </tr>
                         </>

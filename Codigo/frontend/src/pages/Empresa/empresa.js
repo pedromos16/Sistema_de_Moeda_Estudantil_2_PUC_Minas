@@ -50,7 +50,7 @@ function Empresa() {
   async function handleCompra(vantagemID) {
     try {
       await api.post("/compra/cadastrar", {
-        alunoId: id,
+        alunoId: getId(),
         vantagensIds: [vantagemID],
       });
       alert("Compra realizada!");

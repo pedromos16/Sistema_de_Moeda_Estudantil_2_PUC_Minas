@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 export const isAuthenticated = () => {
   return !!window.localStorage.getItem("id");
 };
@@ -10,9 +8,8 @@ export const loginAuth = (id, roleId) => {
 };
 
 export const logout = () => {
-  const navigate = useNavigate;
   window.localStorage.clear();
-  navigate("/login");
+  window.location.reload(true);
 };
 
 export const getId = () => window.localStorage.getItem("id");
