@@ -30,17 +30,19 @@ export default function EditarEmpresa() {
 
   return (
     <>
-      <h1>Editar Empresa</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="CNPJ"
-          onChange={handleChange}
-          name="cnpj"
-          value={formData.cnpj}
-        />
-        <button>Submit</button>
-      </form>
+      <div className="centered-container">
+        <h1>Editar Empresa</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="CNPJ"
+            onChange={handleChange}
+            name="cnpj"
+            value={formData.cnpj}
+          />
+          <button>Submit</button>
+        </form>
+      </div>
     </>
   );
 }

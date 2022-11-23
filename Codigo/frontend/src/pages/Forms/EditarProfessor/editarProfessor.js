@@ -30,38 +30,40 @@ export default function EditarProfessor() {
 
   return (
     <>
-      <h1>Editar {formData.nome}</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nome"
-          onChange={handleChange}
-          name="nome"
-          value={formData.nome}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={handleChange}
-          name="email"
-          value={formData.email}
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          onChange={handleChange}
-          name="senha"
-          value={formData.senha}
-        />
-        <input
-          type="text"
-          placeholder="CPF"
-          onChange={handleChange}
-          name="cpf"
-          value={formData.cpf}
-        />
-        <button>Submit</button>
-      </form>
+      <div className="centered-container">
+        <h1>Editar {formData.nome}</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Nome"
+            onChange={handleChange}
+            name="nome"
+            value={formData.nome}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={handleChange}
+            name="email"
+            value={formData.email}
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            onChange={handleChange}
+            name="senha"
+            value={formData.senha}
+          />
+          <input
+            type="text"
+            placeholder="CPF"
+            onChange={handleChange}
+            name="cpf"
+            value={formData.cpf}
+          />
+          <button>Submit</button>
+        </form>
+      </div>
     </>
   );
 }
