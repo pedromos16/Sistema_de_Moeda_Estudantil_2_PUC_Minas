@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -23,7 +24,7 @@ public class AlunoResponseDTO {
     private Integer roleID;
     private String cpf;
 
-    private List<Compra> compras;
+    private List<CompraResponseDTO> compras;
 
     public AlunoResponseDTO(Aluno aluno){
         this.compras = new ArrayList<>();
@@ -35,6 +36,6 @@ public class AlunoResponseDTO {
         this.saldo = aluno.getSaldo();
         this.cpf = aluno.getCpf();
         this.roleID = 1;
-        this.compras = aluno.getCompras();
+        this.compras = aluno.getCompras().stream().map(CompraResponseDTO::new).collect(Collectors.toList());
     }
 }

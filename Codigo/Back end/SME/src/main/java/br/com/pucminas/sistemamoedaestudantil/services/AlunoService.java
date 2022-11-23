@@ -37,7 +37,7 @@ public class AlunoService {
 
     public void subtrairMoedas(double valor, Integer id) throws Exception {
         Aluno aluno = getById(id);
-        if(aluno.getSaldo() - valor > 0){
+        if(aluno.getSaldo() - valor >= 0){
             aluno.setSaldo(aluno.getSaldo() - valor);
             repository.save(aluno);
         }else

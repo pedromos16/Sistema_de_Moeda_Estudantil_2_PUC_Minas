@@ -65,7 +65,8 @@ function Lista() {
                   <caption>Empresas cadastradas no sistema</caption>
                   <thead>
                     <tr>
-                      <th>CNPJ</th>
+                      <th>Nome</th>
+                      <th scope="col">CNPJ</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -74,10 +75,9 @@ function Lista() {
                         <tr>
                           <th scope="row">
                             {" "}
-                            <Link to={`/empresa/${empresa.id}`}>
-                              {empresa.cnpj}
-                            </Link>
+                            <Link to={`/empresa/${empresa.id}`}>{empresa.nome}</Link>
                           </th>
+                          <td>{empresa.cnpj}</td>
                         </tr>
                       </>
                     ))}

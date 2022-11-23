@@ -80,6 +80,7 @@ public class TransacaoService {
         obj.setAluno(alunoService.getById(objDTO.getAlunoId()));
         obj.setProfessor(professorService.getById(objDTO.getProfessorId()));
         obj.setValor(objDTO.getValor());
+        obj.setDescricao(objDTO.getDescricao());
         return obj;
     }
 
