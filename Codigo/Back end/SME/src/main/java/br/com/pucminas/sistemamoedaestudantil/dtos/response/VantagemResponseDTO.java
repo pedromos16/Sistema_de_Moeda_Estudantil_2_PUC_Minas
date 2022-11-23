@@ -20,6 +20,6 @@ public class VantagemResponseDTO {
         this.empresaId = vantagem.getEmpresa().getId();
         this.valor = vantagem.getValor();
         this.descricao = vantagem.getDescricao();
-        this.imagem = vantagem.getDescricao();
+        this.imagem = vantagem.getImagem();
     }
 }

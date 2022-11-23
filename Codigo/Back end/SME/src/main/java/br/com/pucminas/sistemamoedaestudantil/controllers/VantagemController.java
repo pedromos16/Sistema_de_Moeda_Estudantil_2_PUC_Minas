@@ -51,13 +51,13 @@ public class VantagemController {
         obj = service.getById(id);
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Nenhuma vantagem encontrada");
-        }
+        }   
         return ResponseEntity.ok().body(new VantagemResponseDTO(obj));
     }
 
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<?> findAllListagens(@RequestBody VantagemRequestDTO objDto) {
+    public ResponseEntity<?> insert(@RequestBody VantagemRequestDTO objDto) {
         return ResponseEntity.ok().body(service.addVantagem(objDto));
     }
 
