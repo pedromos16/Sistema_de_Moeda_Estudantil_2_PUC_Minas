@@ -19,19 +19,10 @@ function Aluno() {
 
   const [formData, setFormData] = useState({
     alunoId: null,
-    professorId: null,
+    professorId: getId(),
     valor: null,
     descricao: "",
   });
-
-  if (isProfessor()) {
-    setFormData({
-      alunoId: aluno.id,
-      professorId: getId(),
-      valor: null,
-      descricao: "",
-    });
-  }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -43,20 +34,32 @@ function Aluno() {
     });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    api
-      .post("/transacao/cadastrar/byprofessor", formData)
-      .then((res) => alert("Transacao realizada!"));
+    try {
+      const res = await api.post("/transacao/cadastrar/byprofessor", formData);
+      alert(
+        `Transacao realizada no valor de ${res.data.valor} moedas para o aluno ${aluno.nome}!`
+      );
+    } catch (err) {
+      alert(err);
+      console.log(err);
+    }
   }
-
   useEffect(() => {
     api.get(`/aluno/mostrar/id/${id}`).then((res) => setAluno(res.data));
 
     api
       .get(`/transacao/listar/aluno?id=${id}`)
       .then((res) => setTransacoes(res.data));
-  }, [id]);
+
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        alunoId: aluno.id,
+      };
+    });
+  }, [id, aluno]);
 
   const compras = aluno.compras !== undefined ? aluno.compras : [];
 
